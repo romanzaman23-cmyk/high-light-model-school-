@@ -1,0 +1,209 @@
+{
+  "general": {
+    "schoolName": "Highlight Model School",
+    "campusLocation": "Saraghundi Thall, District Hangu, Khyber Pakhtunkhwa, Pakistan",
+    "phone1": "0301-8323146",
+    "phone2": "0303-8262123",
+    "whatsapp": "923018323146",
+    "email": "info@highlightmodelschool.edu.pk",
+    "officeHours": "Monday - Saturday, 8:00 AM - 2:00 PM PST",
+    "logoUrl": "images/logo.png"
+  },
+  "hero": {
+    "welcomeBadge": "Welcome to Highlight Model School",
+    "title": "Inspiring Excellence, Character & Future Leadership",
+    "subtitle": "Providing modern science education, Islamic ethics, and holistic academic guidance for students in Saraghundi Thall and District Hangu.",
+    "applyBtnText": "Apply for Admission 2026-27",
+    "noticeBtnText": "View Latest Circulars",
+    "breakingNotice": "Admissions 2026-27 Open: Online registration for all classes is now underway.",
+    "slides": [
+      {
+        "id": 1,
+        "title": "Modern School Campus",
+        "alt": "Highlight Model School Campus",
+        "image": "images/80ef8ccc-f234-4a73-bbb4-558577c6b6fe_jpg_1792102979009.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Library & Study Center",
+        "alt": "School Library and Learning Hall",
+        "image": "images/8ef84f27-71dc-444c-a9c3-5bc00b33795d_jpg_1792102986887.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Science & Computer Lab",
+        "alt": "Students in STEM Science Laboratory",
+        "image": "images/406819d5-8224-4d18-a25d-640a243d6401_jpg_1792102993941.jpg"
+      }
+    ]
+  },
+  "principal": {
+    "badge": "Leadership Greeting",
+    "title": "Message from the Principal",
+    "lead": "Welcome to Highlight Model School, Saraghundi Thall — an educational home dedicated to moral discipline, scholastic rigor, and intellectual discovery.",
+    "p1": "At Highlight Model School, our sacred mission is to guide young students from their foundational early years up through high school matriculation with an unwavering commitment to quality. We blend the official KPK curriculum with modern STEM learning, biometric discipline, and moral mentorship so that our children grow to be leaders of their community and nation.",
+    "p2": "Our doors are open to every parent striving for a brighter, honorable future for their son and daughter. We welcome you to visit our campus in Saraghundi Thall and join the Highlight family.",
+    "principalName": "Principal & Head of Institution",
+    "designation": "Highlight Model School Thall",
+    "photoUrl": "images/school_principal_in_formal_office_portrait_png_1792103310190.png",
+    "officePhones": "0301-8323146 • 0303-8262123"
+  },
+  "about": {
+    "badge": "Foundation & Values",
+    "title": "About Our School",
+    "lead": "Highlight Model School delivers a holistic learning journey rooted in moral integrity, Islamic values, and scientific curiosity. We nurture a disciplined educational atmosphere in Saraghundi Thall where students flourish into responsible citizens.",
+    "introTitle": "School Introduction",
+    "introText": "Serving the children of Saraghundi Thall and District Hangu with modern classrooms, dedicated faculty, science laboratories, computer literacy, and automated student attendance tracking.",
+    "introTag": "Registered Institution • District Hangu, KPK",
+    "missionTitle": "Our Mission",
+    "missionText": "To empower every student with academic mastery, moral clarity, disciplined habits, and critical thinking skills essential for higher educational achievement and community uplift.",
+    "missionTag": "Action-Oriented • Student-Centered",
+    "visionTitle": "Our Vision",
+    "visionText": "To be celebrated as the premier regional center of scholastic distinction, developing ethical thinkers and resilient leaders who honorably contribute to society under the banner of 'نور • ہدایت • حکمت'.",
+    "visionTag": "Moral Character • Modern Education",
+    "stats": [
+      {
+        "number": "850+",
+        "label": "Active Students",
+        "icon": "users"
+      },
+      {
+        "number": "35+",
+        "label": "Qualified Faculty",
+        "icon": "graduation-cap"
+      },
+      {
+        "number": "98%",
+        "label": "Matric Pass Rate",
+        "icon": "award"
+      },
+      {
+        "number": "15+",
+        "label": "Years of Service",
+        "icon": "clock"
+      }
+    ]
+  },
+  "programs": [
+    {
+      "id": 1,
+      "title": "Pre-Primary Wing",
+      "subtitle": "Montessori & Nursery",
+      "description": "Interactive activity-based learning, phonics, motor skills, sensory development, and social confidence in a caring environment.",
+      "badge": "Ages: 3 - 5 Years",
+      "actionTag": "Pre-Primary (Playgroup / KG)",
+      "icon": "baby"
+    },
+    {
+      "id": 2,
+      "title": "Primary Wing",
+      "subtitle": "Class 1st to 5th",
+      "description": "Comprehensive grounding in English, Mathematics, General Science, Urdu, and Islamic studies with regular monthly assessments.",
+      "badge": "Class 1 to 5",
+      "actionTag": "Primary Wing (Class 1-5)",
+      "icon": "book-open"
+    },
+    {
+      "id": 3,
+      "title": "Middle Wing",
+      "subtitle": "Class 6th to 8th",
+      "description": "Bridge to higher sciences, analytical reasoning, hands-on computer labs, and speech competitions cultivating self-reliance.",
+      "badge": "Class 6 to 8",
+      "actionTag": "Middle Wing (Class 6-8)",
+      "icon": "compass"
+    },
+    {
+      "id": 4,
+      "title": "Secondary Matric",
+      "subtitle": "Class 9th & 10th (BISE Kohat)",
+      "description": "Rigorous preparation in Physics, Chemistry, Biology / Computer Science, and Mathematics for top board exam distinctions.",
+      "badge": "Matric Science",
+      "actionTag": "Secondary Matric (Class 9-10)",
+      "icon": "award"
+    }
+  ],
+  "teachers": [
+    {
+      "id": 1,
+      "name": "Senior Math Faculty",
+      "role": "Department Head",
+      "department": "Mathematics",
+      "subjects": "Calculus, Algebra & Geometry",
+      "experience": "12 Yrs Exp",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuC3raSWiqCnxyPbF4t7uLDlXiiwpy3jIW6s4QJIwky9Y-hUBdcCHNxetP-mxqHC4c3e-sJw4lmScX7KlLQu8jzNLF8JpOyDXobrDmpFuxi_dPQzEsVHPvqlbUzYHlbp0v-_ayV-62iIX8nJXzW2fWQsMge_X_BRBOzTJV37IIw7SAAY8DnnSOXAbuTsJ-o9wWSrl1mEKl9Qz4AkyMkQmPvNSd9j3kcIMptJyb9k7NyDqfRUZ8Pwt-1j"
+    },
+    {
+      "id": 2,
+      "name": "Lead Science Faculty",
+      "role": "STEM & Physics Specialist",
+      "department": "Natural Sciences",
+      "subjects": "Physics, Chemistry & Lab Experiments",
+      "experience": "9 Yrs Exp",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuC69KizG7u-0zQu7W1PpozCkw5PRBhxM6ccaZqgGLWl0eVL58tvObUWIEAyd2a9NU0IT88wyHIAdNvbaTSXHvcm-5wP7FtG_Pret-Nhp2dZbFwe-UNSJ-vIIbgp_5j_eChRa9XcWCU55n6k_RWZR5T9w85a8yPHTaMoCH6qhzjOPdK4NiS0pBvdOMMDtnBHdDOsraoadtlpb7QbF-UPRirKMSjdi-VcXlbWO0Hbdji1P2VwRAFvBMoe"
+    },
+    {
+      "id": 3,
+      "name": "Senior Humanities Faculty",
+      "role": "Language & Social Studies",
+      "department": "Humanities",
+      "subjects": "English, Urdu & Pakistan Studies",
+      "experience": "14 Yrs Exp",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBPqf77FSDZgTyM7DPeaAf1iKZ0GtYjs1l5ZZkvkXUZ_BYZWpHm9a2B7zxFK_oEsT9VrrsGeIMyLiLmb9dGKiQpogvS0tH0OXwdh6x7s204zuBpYrGS4sWqOLAT6KtPNv9WFV69fdzl9fWt-oFYPXl4PrNDeV_R12CfCAs53swVzydhS9zLVGqsAi7LI9qd8ksbAi8HsMAcwr80a5d-mFI8jc91dJnEy3oNfmCMIHymI2Q0VCcco6Ad"
+    }
+  ],
+  "announcements": [
+    {
+      "id": 101,
+      "title": "Admissions Open for Academic Session 2026-2027",
+      "description": "Admissions are officially open from Playgroup to Matric (Grade 10). Limited seats are available on merit. Prospectus and admission forms are obtainable from the main campus admission desk or online.",
+      "announcement_date": "2026-10-01",
+      "category": "ADMISSION",
+      "status": "Published",
+      "author_name": "Admin Principal"
+    },
+    {
+      "id": 102,
+      "title": "Parent-Teacher Meeting (PTM) & Term Progress Reports",
+      "description": "The quarterly Parent-Teacher Meeting will be held on the upcoming Saturday from 9:00 AM to 1:00 PM. Parents are warmly encouraged to discuss their child's academic and moral progress.",
+      "announcement_date": "2026-09-28",
+      "category": "GENERAL",
+      "status": "Published",
+      "author_name": "Admin Office"
+    },
+    {
+      "id": 103,
+      "title": "Launch of Smart Biometric Attendance & Parent Portal Sync",
+      "description": "We are pleased to announce the complete rollout of automated fingerprint biometric attendance. Daily entry and exit alerts are now synchronized in real-time with the HMS Parent Portal.",
+      "announcement_date": "2026-09-20",
+      "category": "GENERAL",
+      "status": "Published",
+      "author_name": "Administration"
+    }
+  ],
+  "facilities": [
+    {
+      "id": 1,
+      "name": "STEM Science Lab",
+      "desc": "Modern equipment for Physics, Chemistry, and Biology practical experiments.",
+      "icon": "flask-conical"
+    },
+    {
+      "id": 2,
+      "name": "High-Tech Computer Lab",
+      "desc": "High-speed internet and modern workstations for IT & coding literacy.",
+      "icon": "monitor"
+    },
+    {
+      "id": 3,
+      "name": "Central Library",
+      "desc": "Thousands of curriculum books, encyclopedias, and moral story collections.",
+      "icon": "library"
+    },
+    {
+      "id": 4,
+      "name": "Smart Biometric Security",
+      "desc": "Automated student & staff fingerprint attendance with parent SMS alerts.",
+      "icon": "fingerprint"
+    }
+  ]
+}

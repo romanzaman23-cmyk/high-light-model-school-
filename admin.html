@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin CMS Portal - Highlight Model School</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#2589E8',
+              hover: '#1b73c7',
+              light: '#eff6ff',
+              border: '#dbeafe',
+              text: '#334155'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .active-nav-tab {
+      background-color: #2589E8 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+    .active-nav-tab i {
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen">
+
+  <!-- ========================================================
+       1. LOGIN MODAL OVERLAY
+  ======================================================== -->
+  <div id="loginOverlay" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-slate-200 text-center relative overflow-hidden">
+      <!-- Top banner accent -->
+      <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#2589E8] via-blue-400 to-[#2589E8]"></div>
+
+      <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-50 border border-blue-100 p-3 mb-4 flex items-center justify-center shadow-xs">
+        <img src="images/logo.png" alt="HMS Logo" class="w-full h-full object-contain">
+      </div>
+
+      <h2 class="text-2xl font-black text-slate-900 tracking-tight">Admin CMS Portal</h2>
+      <p class="text-xs text-slate-500 mt-1 mb-6">Highlight Model School, Saraghundi Thall</p>
+
+      <div id="loginAlert" class="hidden mb-4 p-3 rounded-xl text-xs font-semibold bg-red-50 text-red-600 border border-red-200 text-left"></div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Username</label>
+          <div class="relative">
+            <i data-lucide="user" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+            <input 
+              type="text" 
+              id="loginUsername" 
+              required 
+              value="admin"
+              placeholder="Enter username" 
+              class="w-full pl-9 pr-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] transition-colors"
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password</label>
+          <div class="relative">
+            <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+            <input 
+              type="password" 
+              id="loginPassword" 
+              required 
+              value="admin123"
+              placeholder="Enter password" 
+              class="w-full pl-9 pr-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] transition-colors"
+            >
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs pt-1">
+          <label class="flex items-center gap-2 cursor-pointer text-slate-600">
+            <input type="checkbox" id="rememberMe" checked class="rounded border-slate-300 text-[#2589E8] focus:ring-[#2589E8]">
+            <span>Keep me logged in</span>
+          </label>
+          <button type="button" onclick="fillDemoCredentials()" class="text-[#2589E8] font-bold hover:underline">
+            Default Login
+          </button>
+        </div>
+
+        <button 
+          type="submit" 
+          id="loginSubmitBtn"
+          class="w-full py-3 rounded-xl bg-[#2589E8] hover:bg-[#1b73c7] text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+        >
+          <i data-lucide="log-in" class="w-4 h-4 text-white"></i>
+          <span>Sign In to Dashboard</span>
+        </button>
+      </form>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-400">
+        Default username: <span class="font-mono text-slate-700 font-bold">admin</span> | Default password: <span class="font-mono text-slate-700 font-bold">admin123</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       2. MAIN APP SHELL
+  ======================================================== -->
+  <div id="appShell" class="flex flex-col min-h-screen">
+    
+    <!-- Top Header Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        
+        <!-- Left: Logo & Portal Title -->
+        <div class="flex items-center gap-3">
+          <button id="mobileSidebarToggle" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <img src="images/logo.png" alt="HMS Logo" class="h-10 w-auto object-contain">
+          <div>
+            <h1 class="text-base font-extrabold text-[#2589E8] leading-tight flex items-center gap-2">
+              <span>HMS ADMIN CMS</span>
+              <span class="text-[10px] bg-blue-50 text-[#2589E8] border border-blue-200 px-2 py-0.5 rounded-full font-bold">LIVE EDITOR</span>
+            </h1>
+            <p class="text-[11px] text-slate-500 hidden sm:block">Highlight Model School Content & Media Manager</p>
+          </div>
+        </div>
+
+        <!-- Right: Actions & User Info -->
+        <div class="flex items-center gap-3">
+          <!-- View Website Button -->
+          <a 
+            href="index.html" 
+            target="_blank" 
+            class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-bold transition-all"
+            title="Open website in new window"
+          >
+            <i data-lucide="external-link" class="w-3.5 h-3.5 text-[#2589E8]"></i>
+            <span>Preview Website</span>
+          </a>
+
+          <!-- Save All Changes Button -->
+          <button 
+            type="button" 
+            onclick="saveAllContent(true)"
+            id="saveAllBtn"
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#2589E8] hover:bg-[#1b73c7] text-white text-xs font-bold shadow-sm active:scale-95 transition-all"
+          >
+            <i data-lucide="save" class="w-3.5 h-3.5 text-white"></i>
+            <span>Save Changes</span>
+          </button>
+
+          <!-- Logout Button -->
+          <button 
+            type="button" 
+            onclick="handleLogout()" 
+            class="p-2 rounded-xl hover:bg-red-50 text-slate-500 hover:text-red-600 transition-colors"
+            title="Logout"
+          >
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Workspace with Sidebar & Content Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 w-full flex-1 flex flex-col lg:flex-row gap-6">
+      
+      <!-- ========================================================
+           SIDEBAR NAVIGATION
+      ======================================================== -->
+      <aside id="sidebarNav" class="w-full lg:w-64 shrink-0 bg-white rounded-2xl border border-slate-200 p-3 shadow-xs h-fit sticky top-24">
+        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3 py-2">
+          CMS Navigation
+        </div>
+        <nav class="space-y-1 text-xs font-semibold text-slate-600">
+          <button onclick="switchTab('dashboard')" data-tab="dashboard" class="nav-tab active-nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Dashboard</span>
+          </button>
+
+          <button onclick="switchTab('hero')" data-tab="hero" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="image" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Hero & Slider Images</span>
+          </button>
+
+          <button onclick="switchTab('principal')" data-tab="principal" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="user-check" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Principal's Desk</span>
+          </button>
+
+          <button onclick="switchTab('about')" data-tab="about" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="building" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>About, Mission & Stats</span>
+          </button>
+
+          <button onclick="switchTab('programs')" data-tab="programs" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Academic Programs</span>
+          </button>
+
+          <button onclick="switchTab('teachers')" data-tab="teachers" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="users" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Teachers Directory</span>
+          </button>
+
+          <button onclick="switchTab('announcements')" data-tab="announcements" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="bell" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Notices & Circulars</span>
+          </button>
+
+          <button onclick="switchTab('facilities')" data-tab="facilities" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="sparkles" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Campus Facilities</span>
+          </button>
+
+          <button onclick="switchTab('uniform')" data-tab="uniform" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="shirt" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>School Uniform (3D)</span>
+          </button>
+
+          <button onclick="switchTab('admissions')" data-tab="admissions" class="nav-tab w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="clipboard-list" class="w-4 h-4 text-[#8b1515]"></i>
+              <span>Admissions Inbox</span>
+            </div>
+            <span id="sidebarAdmissionsBadge" class="bg-red-50 text-[#8b1515] border border-red-200 px-1.5 py-0.2 rounded-md font-bold text-[10px]">0</span>
+          </button>
+
+          <button onclick="switchTab('contact')" data-tab="contact" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="phone-call" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Contact & Numbers</span>
+          </button>
+
+          <button onclick="switchTab('settings')" data-tab="settings" class="nav-tab w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all">
+            <i data-lucide="settings" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>Security & Backup</span>
+          </button>
+        </nav>
+
+        <!-- Quick System Status Pill -->
+        <div class="mt-4 pt-4 border-t border-slate-100 px-2 space-y-1.5">
+          <div class="flex items-center justify-between text-[11px] text-slate-500">
+            <span>Storage Status</span>
+            <span id="backendStatusPill" class="text-emerald-600 font-bold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Connected
+            </span>
+          </div>
+          <p class="text-[10px] text-slate-400">All uploads saved to /images folder.</p>
+        </div>
+      </aside>
+
+      <!-- ========================================================
+           TAB CONTENT SECTIONS
+      ======================================================== -->
+      <main class="flex-1 min-w-0">
+        
+        <!-- ----------------------------------------------------
+             TAB 1: DASHBOARD
+        ---------------------------------------------------- -->
+        <div id="tab-dashboard" class="tab-pane space-y-6">
+          <!-- Welcome Banner -->
+          <div class="bg-gradient-to-r from-[#2589E8] to-blue-600 rounded-3xl p-6 sm:p-8 text-white shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div class="space-y-2 max-w-xl">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-xs font-bold tracking-wide">
+                <span>✦ Control Center</span>
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Highlight Model School CMS</h2>
+              <p class="text-xs sm:text-sm text-blue-100 leading-relaxed">
+                Aap website ka har text, notice, program, aur picture yahan se direct upload aur edit kar sakte hain. Sub changes real-time website par reflect honge.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <a href="index.html" target="_blank" class="px-5 py-2.5 rounded-xl bg-white text-[#2589E8] hover:bg-blue-50 font-bold text-xs shadow-md transition-all">
+                Preview Website
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Stats Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#2589E8] flex items-center justify-center">
+                <i data-lucide="bell" class="w-5 h-5"></i>
+              </div>
+              <div class="text-2xl font-extrabold text-slate-900" id="dashTotalNotices">0</div>
+              <div class="text-xs text-slate-500 font-semibold">Active Circulars</div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#2589E8] flex items-center justify-center">
+                <i data-lucide="users" class="w-5 h-5"></i>
+              </div>
+              <div class="text-2xl font-extrabold text-slate-900" id="dashTotalTeachers">0</div>
+              <div class="text-xs text-slate-500 font-semibold">Faculty Staff</div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#2589E8] flex items-center justify-center">
+                <i data-lucide="image" class="w-5 h-5"></i>
+              </div>
+              <div class="text-2xl font-extrabold text-slate-900" id="dashTotalSlides">0</div>
+              <div class="text-xs text-slate-500 font-semibold">Slider Images</div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+              <div class="w-10 h-10 rounded-xl bg-red-50 text-[#8b1515] flex items-center justify-center">
+                <i data-lucide="clipboard-check" class="w-5 h-5"></i>
+              </div>
+              <div class="text-2xl font-extrabold text-slate-900" id="dashTotalAdmissions">0</div>
+              <div class="text-xs text-slate-500 font-semibold">Online Admissions</div>
+            </div>
+          </div>
+
+          <!-- Shortcuts & Guide -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Shortcut Actions -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+              <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4 text-[#2589E8]"></i>
+                <span>Quick Actions</span>
+              </h3>
+              <div class="grid grid-cols-2 gap-3">
+                <button onclick="switchTab('announcements')" class="p-3 text-left rounded-xl border border-slate-200 hover:border-[#2589E8] hover:bg-blue-50/50 transition-all group">
+                  <i data-lucide="plus-circle" class="w-5 h-5 text-[#2589E8] mb-1 group-hover:scale-110 transition-transform"></i>
+                  <div class="text-xs font-bold text-slate-800">Add New Notice</div>
+                  <div class="text-[10px] text-slate-500">Circulars & exams</div>
+                </button>
+
+                <button onclick="switchTab('hero')" class="p-3 text-left rounded-xl border border-slate-200 hover:border-[#2589E8] hover:bg-blue-50/50 transition-all group">
+                  <i data-lucide="upload" class="w-5 h-5 text-[#2589E8] mb-1 group-hover:scale-110 transition-transform"></i>
+                  <div class="text-xs font-bold text-slate-800">Upload Slider Pic</div>
+                  <div class="text-[10px] text-slate-500">Homepage carousel</div>
+                </button>
+
+                <button onclick="switchTab('teachers')" class="p-3 text-left rounded-xl border border-slate-200 hover:border-[#2589E8] hover:bg-blue-50/50 transition-all group">
+                  <i data-lucide="user-plus" class="w-5 h-5 text-[#2589E8] mb-1 group-hover:scale-110 transition-transform"></i>
+                  <div class="text-xs font-bold text-slate-800">Add Teacher</div>
+                  <div class="text-[10px] text-slate-500">Faculty profile</div>
+                </button>
+
+                <button onclick="switchTab('principal')" class="p-3 text-left rounded-xl border border-slate-200 hover:border-[#2589E8] hover:bg-blue-50/50 transition-all group">
+                  <i data-lucide="edit" class="w-5 h-5 text-[#2589E8] mb-1 group-hover:scale-110 transition-transform"></i>
+                  <div class="text-xs font-bold text-slate-800">Principal Photo</div>
+                  <div class="text-[10px] text-slate-500">Update message</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Current Breaking Ticker Status -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+              <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                <i data-lucide="radio" class="w-4 h-4 text-emerald-500"></i>
+                <span>Active Breaking Ticker</span>
+              </h3>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                <span class="text-[11px] font-bold text-[#2589E8] uppercase tracking-wider">Top Notice Bar:</span>
+                <p id="dashBreakingPreview" class="text-xs text-slate-700 font-medium italic">Loading breaking notice...</p>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-500">Change this in the "Hero & Slider" tab.</span>
+                <button onclick="switchTab('hero')" class="font-bold text-[#2589E8] hover:underline">Edit Ticker →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 2: HERO & SLIDER IMAGES
+        ---------------------------------------------------- -->
+        <div id="tab-hero" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Hero Section & Slider Carousel</h3>
+                <p class="text-xs text-slate-500">Manage headline text, announcement ticker, and upload slider pictures.</p>
+              </div>
+              <button onclick="saveAllContent(true)" class="px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                Save Hero
+              </button>
+            </div>
+
+            <!-- Breaking Notice Ticker -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-slate-700 uppercase">Top Marquee / Breaking Announcement</label>
+              <input type="text" id="heroBreakingNoticeInput" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              <p class="text-[11px] text-slate-400">This appears at the very top of the website in the black notice bar.</p>
+            </div>
+
+            <!-- Hero Texts -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Welcome Badge</label>
+                <input type="text" id="heroWelcomeBadge" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Apply Button Text</label>
+                <input type="text" id="heroApplyBtnText" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              </div>
+
+              <div class="sm:col-span-2 space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Main Headline Title</label>
+                <input type="text" id="heroTitle" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-bold">
+              </div>
+
+              <div class="sm:col-span-2 space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Hero Subtitle Description</label>
+                <textarea id="heroSubtitle" rows="3" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]"></textarea>
+              </div>
+            </div>
+
+            <!-- Slider Images Manager -->
+            <div class="border-t border-slate-100 pt-6 space-y-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="text-sm font-extrabold text-slate-900 uppercase">Slider Carousel Images</h4>
+                  <p class="text-xs text-slate-500">Upload pictures directly from your computer or provide URLs.</p>
+                </div>
+                <button type="button" onclick="addNewSlidePrompt()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 text-[#2589E8] hover:bg-blue-100 font-bold text-xs transition-colors">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Add Slide</span>
+                </button>
+              </div>
+
+              <!-- Slides List -->
+              <div id="slidesListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 3: PRINCIPAL'S DESK
+        ---------------------------------------------------- -->
+        <div id="tab-principal" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Principal's Corner & Message</h3>
+                <p class="text-xs text-slate-500">Edit principal message, designation, contact numbers, and upload official photo.</p>
+              </div>
+              <button onclick="saveAllContent(true)" class="px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                Save Section
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <!-- Left: Photo Uploader & Preview -->
+              <div class="lg:col-span-4 space-y-4">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Principal Photograph</label>
+                <div class="aspect-square rounded-2xl border-2 border-slate-200 overflow-hidden bg-slate-50 relative group">
+                  <img id="principalPhotoPreview" src="images/logo.png" alt="Principal" class="w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <label class="cursor-pointer bg-white text-slate-800 px-3.5 py-1.5 rounded-xl font-bold text-xs shadow-md hover:bg-blue-50">
+                      <span>Change Photo</span>
+                      <input type="file" accept="image/*" class="hidden" onchange="uploadImageHandler(this, setPrincipalPhoto)">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label class="block text-[11px] font-semibold text-slate-600">Or Paste Image URL directly:</label>
+                  <input type="text" id="principalPhotoUrlInput" oninput="updatePrincipalPhotoPreview(this.value)" class="w-full px-3 py-1.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]" placeholder="https://... or images/pic.jpg">
+                  <button type="button" onclick="triggerFileInput('principalFileInput')" class="w-full py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#2589E8] font-bold text-xs flex items-center justify-center gap-1.5 transition-colors">
+                    <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                    <span>Upload Image from Device</span>
+                  </button>
+                  <input type="file" id="principalFileInput" accept="image/*" class="hidden" onchange="uploadImageHandler(this, setPrincipalPhoto)">
+                </div>
+              </div>
+
+              <!-- Right: Principal Details & Paragraphs -->
+              <div class="lg:col-span-8 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="block text-xs font-bold text-slate-700 uppercase">Greeting Badge</label>
+                    <input type="text" id="principalBadge" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+                  </div>
+
+                  <div class="space-y-1">
+                    <label class="block text-xs font-bold text-slate-700 uppercase">Section Heading</label>
+                    <input type="text" id="principalTitle" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-bold">
+                  </div>
+
+                  <div class="space-y-1">
+                    <label class="block text-xs font-bold text-slate-700 uppercase">Principal Name / Title</label>
+                    <input type="text" id="principalNameInput" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+                  </div>
+
+                  <div class="space-y-1">
+                    <label class="block text-xs font-bold text-slate-700 uppercase">Designation / Campus</label>
+                    <input type="text" id="principalDesignationInput" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+                  </div>
+
+                  <div class="sm:col-span-2 space-y-1">
+                    <label class="block text-xs font-bold text-slate-700 uppercase">Office Phone Numbers</label>
+                    <input type="text" id="principalOfficePhones" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-mono">
+                  </div>
+                </div>
+
+                <div class="space-y-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Introductory Lead Paragraph</label>
+                  <textarea id="principalLead" rows="2" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]"></textarea>
+                </div>
+
+                <div class="space-y-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Message Paragraph 1</label>
+                  <textarea id="principalP1" rows="3" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]"></textarea>
+                </div>
+
+                <div class="space-y-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Message Paragraph 2</label>
+                  <textarea id="principalP2" rows="3" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 4: ABOUT, MISSION, VISION & STATS
+        ---------------------------------------------------- -->
+        <div id="tab-about" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">About the School, Mission & Stats</h3>
+                <p class="text-xs text-slate-500">Edit school overview, core values, mission, vision and key numbers.</p>
+              </div>
+              <button onclick="saveAllContent(true)" class="px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                Save About
+              </button>
+            </div>
+
+            <!-- Heading & Lead -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Section Badge</label>
+                <input type="text" id="aboutBadge" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              </div>
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Section Title</label>
+                <input type="text" id="aboutTitle" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-bold">
+              </div>
+              <div class="sm:col-span-2 space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Main Lead Paragraph</label>
+                <textarea id="aboutLead" rows="2" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]"></textarea>
+              </div>
+            </div>
+
+            <!-- 3 Pillars: Intro, Mission, Vision -->
+            <div class="border-t border-slate-100 pt-6 space-y-4">
+              <h4 class="text-sm font-extrabold text-slate-900 uppercase">Core Foundation Cards</h4>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Intro Card -->
+                <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-3">
+                  <div class="font-bold text-xs text-[#2589E8] uppercase">Card 1: School Introduction</div>
+                  <input type="text" id="aboutIntroTitle" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 font-bold" placeholder="Card Title">
+                  <textarea id="aboutIntroText" rows="4" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200" placeholder="Card Text"></textarea>
+                  <input type="text" id="aboutIntroTag" class="w-full px-3 py-1.5 text-[11px] rounded-lg border border-slate-200 text-slate-500" placeholder="Card Footer Tag">
+                </div>
+
+                <!-- Mission Card -->
+                <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-3">
+                  <div class="font-bold text-xs text-[#2589E8] uppercase">Card 2: Our Mission</div>
+                  <input type="text" id="aboutMissionTitle" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 font-bold" placeholder="Card Title">
+                  <textarea id="aboutMissionText" rows="4" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200" placeholder="Card Text"></textarea>
+                  <input type="text" id="aboutMissionTag" class="w-full px-3 py-1.5 text-[11px] rounded-lg border border-slate-200 text-slate-500" placeholder="Card Footer Tag">
+                </div>
+
+                <!-- Vision Card -->
+                <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-3">
+                  <div class="font-bold text-xs text-[#2589E8] uppercase">Card 3: Our Vision</div>
+                  <input type="text" id="aboutVisionTitle" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 font-bold" placeholder="Card Title">
+                  <textarea id="aboutVisionText" rows="4" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200" placeholder="Card Text"></textarea>
+                  <input type="text" id="aboutVisionTag" class="w-full px-3 py-1.5 text-[11px] rounded-lg border border-slate-200 text-slate-500" placeholder="Card Footer Tag">
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats Numbers -->
+            <div class="border-t border-slate-100 pt-6 space-y-4">
+              <h4 class="text-sm font-extrabold text-slate-900 uppercase">Achievement Counters & Stats</h4>
+              <div id="statsListContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 5: ACADEMIC PROGRAMS
+        ---------------------------------------------------- -->
+        <div id="tab-programs" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Academic Programs & Wings</h3>
+                <p class="text-xs text-slate-500">Manage educational pathways from Pre-Primary to Matric.</p>
+              </div>
+              <button onclick="addNewProgramPrompt()" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                <span>Add Program</span>
+              </button>
+            </div>
+
+            <div id="programsListContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Injected via JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 6: TEACHERS DIRECTORY
+        ---------------------------------------------------- -->
+        <div id="tab-teachers" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Faculty & Teachers Directory</h3>
+                <p class="text-xs text-slate-500">Add teacher profiles, edit subject specializations, and upload portraits.</p>
+              </div>
+              <button onclick="addNewTeacherModal()" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                <i data-lucide="user-plus" class="w-4 h-4"></i>
+                <span>Add Teacher</span>
+              </button>
+            </div>
+
+            <div id="teachersListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Injected via JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 7: NOTICES & ANNOUNCEMENTS
+        ---------------------------------------------------- -->
+        <div id="tab-announcements" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Notices & Circulars Manager</h3>
+                <p class="text-xs text-slate-500">Publish exam circulars, admission deadlines, holiday notices, and parent circulars.</p>
+              </div>
+              <button onclick="addNewNoticeModal()" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>Publish New Notice</span>
+              </button>
+            </div>
+
+            <div id="announcementsListContainer" class="space-y-4">
+              <!-- Injected via JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 8: CAMPUS FACILITIES
+        ---------------------------------------------------- -->
+        <div id="tab-facilities" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Campus Facilities & Highlights</h3>
+                <p class="text-xs text-slate-500">Manage science labs, computer rooms, library, and campus amenities.</p>
+              </div>
+              <button onclick="addNewFacilityPrompt()" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                <span>Add Facility</span>
+              </button>
+            </div>
+
+            <div id="facilitiesListContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Injected via JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 8B: SCHOOL UNIFORM (3D & SPECIFICATIONS)
+        ---------------------------------------------------- -->
+        <div id="tab-uniform" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Official School Uniform & 3D Model</h3>
+                <p class="text-xs text-slate-500">Manage uniform pattern photo, boys/girls dress guidelines, and tailor specs.</p>
+              </div>
+              <button onclick="saveAllContent(true)" class="px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                Save Uniform Settings
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+              <!-- Left: Uniform Pattern Image -->
+              <div class="md:col-span-5 space-y-3">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Uniform Pattern Display Photo</label>
+                <div class="aspect-[3/4] rounded-2xl border-2 border-slate-200 overflow-hidden bg-slate-50 relative group">
+                  <img id="adminUniformPhotoPreview" src="images/school_uniform.jpg" alt="Uniform Pattern" class="w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <label class="cursor-pointer bg-white text-slate-800 px-3.5 py-1.5 rounded-xl font-bold text-xs shadow-md hover:bg-blue-50">
+                      <span>Replace Photo</span>
+                      <input type="file" accept="image/*" class="hidden" onchange="uploadImageHandler(this, (url) => { document.getElementById('adminUniformPhotoPreview').src = url; })">
+                    </label>
+                  </div>
+                </div>
+                <label class="cursor-pointer w-full py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#2589E8] font-bold text-xs flex items-center justify-center gap-1.5 transition-colors">
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                  <span>Upload New Pattern Photo</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="uploadImageHandler(this, (url) => { document.getElementById('adminUniformPhotoPreview').src = url; })">
+                </label>
+              </div>
+
+              <!-- Right: Uniform Specifications -->
+              <div class="md:col-span-7 space-y-4">
+                <div class="space-y-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Boys Uniform Guidelines</label>
+                  <textarea id="adminUniformBoysDesc" rows="3" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">Pistachio Sage Green Collared Shirt with embroidered school crest on left chest pocket, Dark Forest Green & Gold/Beige striped diagonal tie, Formal Khaki/Beige school trousers, and polished black shoes with dark socks.</textarea>
+                </div>
+
+                <div class="space-y-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Girls Uniform Guidelines</label>
+                  <textarea id="adminUniformGirlsDesc" rows="3" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">Matching Pistachio Sage Green pleated kurti / frock with chest pocket & embroidered HMS crest badge, Matching Khaki/Beige Shalwar or trousers, and black Mary Jane school shoes.</textarea>
+                </div>
+
+                <div class="space-y-1">
+                  <label class="block text-xs font-bold text-slate-700 uppercase">Winter Dress Code Addition</label>
+                  <textarea id="adminUniformWinterDesc" rows="2" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">Navy Blue V-neck knit pullover / sweater or blazer with school crest badge.</textarea>
+                </div>
+
+                <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 space-y-2">
+                  <span class="font-bold text-xs text-[#2589E8] block">3D Mannequin Status</span>
+                  <p class="text-xs text-slate-600">The 3D interactive mannequin on the website automatically reflects the official Pistachio Green (#93B791) and Khaki Beige (#C8A87D) palette.</p>
+                  <a href="index.html#uniform" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#2589E8] hover:underline">
+                    <span>View 3D Uniform on Live Website →</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 9: ADMISSION SUBMISSIONS INBOX
+        ---------------------------------------------------- -->
+        <div id="tab-admissions" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg font-extrabold text-[#8b1515]">Online Admission Applications</h3>
+                  <span id="admissionsTotalBadge" class="bg-red-50 text-[#8b1515] border border-red-200 text-xs px-2.5 py-0.5 rounded-full font-bold">0</span>
+                </div>
+                <p class="text-xs text-slate-500">Applications submitted by parents on the website with exact tracking replica.</p>
+              </div>
+              
+              <div class="flex items-center gap-2">
+                <button onclick="refreshAdmissionsList()" class="p-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600" title="Refresh">
+                  <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                </button>
+                <button onclick="exportAdmissionsCSV()" class="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center gap-1.5">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                  <span>Export CSV</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+              <div class="relative w-full sm:flex-1">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+                <input 
+                  type="text" 
+                  id="admissionsSearchInput" 
+                  oninput="filterAdmissionsList()" 
+                  placeholder="Search by student name, father name, or reg no..." 
+                  class="w-full pl-9 pr-3.5 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#8b1515]"
+                >
+              </div>
+              <select id="admissionsStatusFilter" onchange="filterAdmissionsList()" class="w-full sm:w-44 px-3 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#8b1515] font-semibold text-slate-700">
+                <option value="ALL">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+
+            <!-- Table of Admissions -->
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full text-left text-xs text-slate-600">
+                <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+                  <tr>
+                    <th class="p-3.5">Reg. No</th>
+                    <th class="p-3.5">Student Name</th>
+                    <th class="p-3.5">Father Name</th>
+                    <th class="p-3.5">Class</th>
+                    <th class="p-3.5">Contact No</th>
+                    <th class="p-3.5">Status</th>
+                    <th class="p-3.5 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admissionsTableBody" class="divide-y divide-slate-100">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 10: CONTACT & LOCATION
+        ---------------------------------------------------- -->
+        <div id="tab-contact" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Campus Contact & Communication</h3>
+                <p class="text-xs text-slate-500">Edit school official helpline, WhatsApp, address, and office hours.</p>
+              </div>
+              <button onclick="saveAllContent(true)" class="px-4 py-2 bg-[#2589E8] text-white text-xs font-bold rounded-xl hover:bg-[#1b73c7] transition-all">
+                Save Contact
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">School Name</label>
+                <input type="text" id="contactSchoolName" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-bold">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Official Email</label>
+                <input type="email" id="contactEmail" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Primary Phone</label>
+                <input type="text" id="contactPhone1" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-mono">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Secondary Phone</label>
+                <input type="text" id="contactPhone2" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-mono">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">WhatsApp Number (e.g. 923018323146)</label>
+                <input type="text" id="contactWhatsapp" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-mono">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Office Hours</label>
+                <input type="text" id="contactOfficeHours" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              </div>
+
+              <div class="sm:col-span-2 space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Campus Location Address</label>
+                <textarea id="contactAddress" rows="2" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------
+             TAB 11: SECURITY & BACKUP
+        ---------------------------------------------------- -->
+        <div id="tab-settings" class="tab-pane hidden space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h3 class="text-lg font-extrabold text-slate-900">Security & Credentials</h3>
+              <p class="text-xs text-slate-500">Change your admin username and password.</p>
+            </div>
+
+            <form onsubmit="handlePasswordChange(event)" class="space-y-4 max-w-md">
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">Current Password</label>
+                <input type="password" id="settingsCurrentPass" required class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">New Username</label>
+                <input type="text" id="settingsNewUser" value="admin" required class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase">New Password</label>
+                <input type="password" id="settingsNewPass" required placeholder="Enter new strong password" class="w-full px-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              </div>
+
+              <button type="submit" class="px-5 py-2.5 rounded-xl bg-[#2589E8] hover:bg-[#1b73c7] text-white font-bold text-xs shadow-sm transition-all">
+                Update Password
+              </button>
+            </form>
+
+            <!-- Backup & Restore -->
+            <div class="border-t border-slate-100 pt-6 space-y-4">
+              <div>
+                <h4 class="text-sm font-extrabold text-slate-900 uppercase">Database Backup & Recovery</h4>
+                <p class="text-xs text-slate-500">Download a full backup of all school data, or restore from a previous JSON backup file.</p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-3">
+                <button onclick="downloadBackupJSON()" class="px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center gap-2 shadow-xs transition-colors">
+                  <i data-lucide="download" class="w-4 h-4 text-[#2589E8]"></i>
+                  <span>Download Backup JSON</span>
+                </button>
+
+                <label class="cursor-pointer px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center gap-2 shadow-xs transition-colors">
+                  <i data-lucide="upload" class="w-4 h-4 text-[#2589E8]"></i>
+                  <span>Restore from JSON File</span>
+                  <input type="file" accept=".json" class="hidden" onchange="restoreBackupHandler(this)">
+                </label>
+
+                <button onclick="resetToFactoryDefaults()" class="px-4 py-2.5 rounded-xl border border-red-200 bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs flex items-center gap-2 transition-colors">
+                  <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                  <span>Reset to Factory Defaults</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODALS: TEACHER MODAL, NOTICE MODAL, ADMISSION VIEW MODAL
+  ======================================================== -->
+  
+  <!-- Teacher Modal -->
+  <div id="teacherModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+        <h3 id="teacherModalTitle" class="text-base font-extrabold text-slate-900">Add Faculty Member</h3>
+        <button onclick="closeTeacherModal()" class="p-1 rounded-lg hover:bg-slate-100 text-slate-400">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleTeacherSubmit(event)" class="space-y-4">
+        <input type="hidden" id="teacherEditId">
+
+        <!-- Photo preview and uploader -->
+        <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-2xl border border-slate-200">
+          <img id="teacherModalPhotoPreview" src="images/logo.png" alt="Teacher" class="w-16 h-16 rounded-xl object-cover border border-slate-200">
+          <div class="flex-1 space-y-1">
+            <span class="text-xs font-bold text-slate-700 block">Teacher Photograph</span>
+            <div class="flex items-center gap-2">
+              <label class="cursor-pointer px-3 py-1.5 rounded-lg bg-[#2589E8] text-white font-bold text-[11px] shadow-xs hover:bg-[#1b73c7] transition-all">
+                <span>Upload Photo</span>
+                <input type="file" accept="image/*" class="hidden" onchange="uploadImageHandler(this, setTeacherModalPhoto)">
+              </label>
+              <input type="text" id="teacherModalPhotoUrl" oninput="document.getElementById('teacherModalPhotoPreview').src = this.value || 'images/logo.png'" placeholder="Or image URL..." class="flex-1 px-2.5 py-1 text-xs rounded-lg border border-slate-200">
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Full Name *</label>
+            <input type="text" id="teacherName" required placeholder="e.g. Senior Math Faculty" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Designation / Role *</label>
+            <input type="text" id="teacherRole" required placeholder="e.g. Department Head" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Department *</label>
+            <input type="text" id="teacherDepartment" required placeholder="e.g. Mathematics" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Experience *</label>
+            <input type="text" id="teacherExperience" required placeholder="e.g. 10 Yrs Exp" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Subjects Taught *</label>
+            <input type="text" id="teacherSubjects" required placeholder="e.g. Calculus, Algebra & Geometry" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeTeacherModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-[#2589E8] hover:bg-[#1b73c7] text-white text-xs font-bold shadow-sm">Save Teacher</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notice Modal -->
+  <div id="noticeModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+        <h3 id="noticeModalTitle" class="text-base font-extrabold text-slate-900">Publish Notice</h3>
+        <button onclick="closeNoticeModal()" class="p-1 rounded-lg hover:bg-slate-100 text-slate-400">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleNoticeSubmit(event)" class="space-y-4">
+        <input type="hidden" id="noticeEditId">
+
+        <div class="space-y-1">
+          <label class="block text-[11px] font-bold text-slate-700 uppercase">Notice Title *</label>
+          <input type="text" id="noticeTitleInput" required placeholder="e.g. Admissions Open 2026-27" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8] font-bold">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Category *</label>
+            <select id="noticeCategorySelect" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              <option value="GENERAL">General Notice</option>
+              <option value="ADMISSION">Admissions</option>
+              <option value="EXAM">Exams & Results</option>
+              <option value="HOLIDAY">Holidays & Vacations</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Date *</label>
+            <input type="date" id="noticeDateInput" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Author / Office *</label>
+            <input type="text" id="noticeAuthorInput" value="Admin Principal" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Publish Status</label>
+            <select id="noticeStatusSelect" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]">
+              <option value="Published">Published (Live)</option>
+              <option value="Draft">Draft (Hidden)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="block text-[11px] font-bold text-slate-700 uppercase">Circular Details & Content *</label>
+          <textarea id="noticeDescInput" rows="5" required placeholder="Type full circular notification text here..." class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2589E8]"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeNoticeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-[#2589E8] hover:bg-[#1b73c7] text-white text-xs font-bold shadow-sm">Save Notice</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Admin JavaScript Engine -->
+  <script src="admin.js"></script>
+</body>
+</html>

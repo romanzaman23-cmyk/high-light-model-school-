@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Highlight Model School - Official Website | Saraghundi Thall</title>
+  <meta name="description" content="Official website of Highlight Model School, Saraghundi Thall, District Hangu, KPK. Nurturing young minds through modern education, character building, science labs, and Islamic values.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#2589E8',
+              hover: '#1b73c7',
+              light: '#eff6ff',
+              border: '#dbeafe',
+              text: '#334155'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            urdu: ['"Noto Nastaliq Urdu"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Noto Nastaliq Urdu, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Noto+Nastaliq+Urdu:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Three.js 3D WebGL Engine for Interactive Uniform Showcase -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Custom Styles (Matching St. Jude Academy Template: #2589E8 & Clean White) -->
+  <link rel="stylesheet" href="styles.css?v=2.0">
+</head>
+<body class="bg-white text-slate-700 antialiased selection:bg-[#2589E8] selection:text-white">
+
+  <!-- ========================================================
+       TOP UTILITY BAR (Live Notice & Management Portal)
+  ======================================================== -->
+  <div class="bg-slate-900 text-white text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+      <!-- Breaking announcement ticker -->
+      <div class="flex items-center gap-2.5 overflow-hidden text-center sm:text-left">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#2589E8] text-white font-bold text-[11px] shrink-0">
+          <i data-lucide="bell" class="w-3 h-3 text-white"></i>
+          <span>NOTICE</span>
+        </span>
+        <span id="heroBreakingNotice" class="text-xs text-slate-200 truncate font-medium">
+          <strong>Admissions 2026-27 Open:</strong> Online registration for all classes is now underway.
+        </span>
+      </div>
+
+      <!-- Quick contact & Admin login -->
+      <div class="flex items-center gap-4 text-[11px] shrink-0">
+        <a href="tel:+923018323146" class="hover:text-[#2589E8] transition-colors flex items-center gap-1.5 text-slate-300">
+          <i data-lucide="phone" class="w-3.5 h-3.5 text-[#2589E8]"></i>
+          <span>0301-8323146</span>
+        </a>
+        <span class="text-slate-600">|</span>
+        <a href="https://wa.me/923018323146" target="_blank" class="hover:text-[#2589E8] transition-colors flex items-center gap-1.5 text-slate-300">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5 text-[#2589E8]"></i>
+          <span>WhatsApp Care</span>
+        </a>
+        <span class="text-slate-600">|</span>
+        <button type="button" onclick="openUniformModal()" class="hover:text-[#2589E8] transition-colors flex items-center gap-1.5 text-slate-300 font-semibold">
+          <i data-lucide="shirt" class="w-3.5 h-3.5 text-[#2589E8]"></i>
+          <span>Uniform (3D)</span>
+        </button>
+        <span class="text-slate-600">|</span>
+        <a href="admin.html" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#2589E8]/20 hover:bg-[#2589E8] text-[#2589E8] hover:text-white font-bold transition-all">
+          <i data-lucide="lock" class="w-3 h-3"></i>
+          <span>Admin Portal (CMS)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       1. HEADER / NAVIGATION (Matching St. Jude Template)
+  ======================================================== -->
+  <header class="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- School Logo on Left -->
+      <a href="#home" class="flex items-center gap-3 py-1 transition-opacity hover:opacity-90">
+        <img src="images/logo.png" alt="Highlight Model School Logo" class="h-12 w-auto object-contain">
+        <div>
+          <div class="text-lg font-extrabold text-[#2589E8] tracking-tight leading-tight">
+            HIGHLIGHT MODEL SCHOOL
+          </div>
+          <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+            Saraghundi Thall • Dist. Hangu
+          </div>
+        </div>
+      </a>
+
+      <!-- Navigation on Right in one horizontal row -->
+      <nav class="hidden lg:flex items-center space-x-1 lg:space-x-2">
+        <a href="#home" class="text-sm font-semibold text-[#2589E8] px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors">Home</a>
+        <a href="#about" class="text-sm font-semibold text-slate-700 hover:text-[#2589E8] px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors">About</a>
+        <a href="#principal" class="text-sm font-semibold text-slate-700 hover:text-[#2589E8] px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors">Principal</a>
+        <a href="#programs" class="text-sm font-semibold text-slate-700 hover:text-[#2589E8] px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors">Academics</a>
+        <a href="#teachers" class="text-sm font-semibold text-slate-700 hover:text-[#2589E8] px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors">Teachers</a>
+        <a href="#uniform" class="text-sm font-semibold text-slate-700 hover:text-[#2589E8] px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-1.5">
+          <i data-lucide="shirt" class="w-4 h-4 text-[#2589E8]"></i>
+          <span>Uniform (3D)</span>
+        </a>
+        <a href="#announcements" class="text-sm font-semibold text-slate-700 hover:text-[#2589E8] px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-1.5">
+          <span>Notices</span>
+          <span class="w-2 h-2 rounded-full bg-[#2589E8] live-indicator"></span>
+        </a>
+        <a href="#contact" class="text-sm font-semibold text-slate-700 hover:text-[#2589E8] px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors">Contact</a>
+        <a href="#admissions" class="ml-2 inline-flex items-center justify-center bg-[#2589E8] text-white text-sm font-bold px-5 py-2.5 rounded-lg shadow-sm hover:brightness-105 active:scale-95 transition-all">
+          Admissions
+        </a>
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobileMenuBtn" aria-label="Open Navigation Menu" class="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden lg:hidden">
+    <div class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white p-6 shadow-2xl flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+          <div class="flex items-center gap-2.5">
+            <img src="images/logo.png" alt="HMS" class="w-9 h-9 object-contain">
+            <span class="font-extrabold text-sm text-[#2589E8]">HMS THALL</span>
+          </div>
+          <button id="mobileMenuCloseBtn" class="p-2 rounded-lg hover:bg-slate-100 text-slate-500">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div class="flex flex-col gap-2 mt-6">
+          <a href="#home" class="mobile-nav-link text-sm font-bold text-[#2589E8] px-3 py-2.5 rounded-lg bg-blue-50">Home</a>
+          <a href="#about" class="mobile-nav-link text-sm font-semibold text-slate-700 px-3 py-2.5 rounded-lg hover:bg-slate-50">About</a>
+          <a href="#principal" class="mobile-nav-link text-sm font-semibold text-slate-700 px-3 py-2.5 rounded-lg hover:bg-slate-50">Principal</a>
+          <a href="#programs" class="mobile-nav-link text-sm font-semibold text-slate-700 px-3 py-2.5 rounded-lg hover:bg-slate-50">Academics</a>
+          <a href="#teachers" class="mobile-nav-link text-sm font-semibold text-slate-700 px-3 py-2.5 rounded-lg hover:bg-slate-50">Teachers</a>
+          <a href="#uniform" class="mobile-nav-link text-sm font-semibold text-slate-700 px-3 py-2.5 rounded-lg hover:bg-slate-50 flex items-center gap-2">
+            <i data-lucide="shirt" class="w-4 h-4 text-[#2589E8]"></i>
+            <span>School Uniform (3D Model)</span>
+          </a>
+          <a href="#announcements" class="mobile-nav-link text-sm font-semibold text-slate-700 px-3 py-2.5 rounded-lg hover:bg-slate-50 flex items-center justify-between">
+            <span>Notices / Announcements</span>
+            <span class="w-2 h-2 rounded-full bg-[#2589E8]"></span>
+          </a>
+          <a href="#contact" class="mobile-nav-link text-sm font-semibold text-slate-700 px-3 py-2.5 rounded-lg hover:bg-slate-50">Contact Us</a>
+          <a href="#admissions" class="mt-4 text-center bg-[#2589E8] text-white text-sm font-bold py-3 rounded-lg shadow-sm">Online Admissions</a>
+          <a href="admin.html" target="_blank" class="mt-2 text-center bg-slate-900 text-white text-xs font-bold py-2.5 rounded-lg shadow-sm flex items-center justify-center gap-1.5">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-[#2589E8]"></i>
+            <span>Admin Portal (CMS)</span>
+          </a>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-slate-100 text-xs text-slate-500 space-y-2">
+        <p class="font-bold text-slate-800">Highlight Model School</p>
+        <p>Saraghundi Thall, District Hangu, KPK</p>
+        <p class="text-[#2589E8] font-bold">Tel: 0301-8323146</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       2. AUTOMATIC IMAGE SLIDER / HERO SECTION (Matching St. Jude Template)
+  ======================================================== -->
+  <section id="home" class="relative w-full h-[540px] lg:h-[620px] overflow-hidden bg-slate-50 border-b border-slate-100">
+    <div id="slider-container" class="relative w-full h-full">
+      <!-- Slide 1: Modern School Campus -->
+      <div class="slide-item absolute inset-0 w-full h-full opacity-100 transition-opacity duration-500 ease-in-out">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO6Vt8krrs9nEOfcYTwmrDdx8IbK4-YG_P3p8s59QVq2dCtb16Eic2CPVP52AlsHGse3DpEctcZQVxqQMLUW_ndgkA07KG-xziD8x5WS_CMgsjDxaYGIHOu7r4KnQQNqwe-y09nYCrjpvNv04dT-xFnmSKBUD2PY32VIpNVVzH_XTIbgTG2bm6GgTsr1WW5gb4EpmIHs5TA-iB__IdV_07c3NCxHr-fibyoHJD-LzHeyqSsSYv2hcV" alt="Highlight Model School Campus" class="w-full h-full object-cover">
+      </div>
+      <!-- Slide 2: Library & Study Center -->
+      <div class="slide-item absolute inset-0 w-full h-full opacity-0 transition-opacity duration-500 ease-in-out">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNovnatBfSdfPJm0n3W8IcsymIoA5a9sEPeZcOBFU7NtnXjVf8fpRIpNBpFWKo-9qgTRBLGBeHq3_JGEtaHvaYvzD8EAlmJ9myJ6PbI4VYGseqDPN7NeRIIwR-TvbDjdilcQcF3BzQIEY9SelsLNvzmump2SCt-_dJ3iksacTiQ3BT53SSYiJoTCc2YH2ZLFpBW9HGs5IS100tMGhZBk7YtaTpmFt_KzZcvNlI8lfDJjOennn4ECei" alt="School Library and Learning Hall" class="w-full h-full object-cover">
+      </div>
+      <!-- Slide 3: Science & Computer Lab -->
+      <div class="slide-item absolute inset-0 w-full h-full opacity-0 transition-opacity duration-500 ease-in-out">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRSzwNC2FgTjlboSKebMDnmXjnEs_h5S7vK6UziIWTju8yiQd0AHJa8JNlO-RMIZizecGB2y4B-29gJ5D2uxxtl5vRBvOiESrEuI6kHeWjxIzqCf-GfmtAlIWtUpeDKJWiTOkdm-5G-uacd_wh6279MMwcP4zqLYpZiSdFMeipUxiAD9nlof93_vRRsxv_oM9SU7NaIIH_PONtrVNG3VbjslM7xCn-f-IK5DPAS4UBRldOADhLqdjf" alt="Students in STEM Science Laboratory" class="w-full h-full object-cover">
+      </div>
+    </div>
+
+    <!-- Hero Content Overlay (Dark Gradient for readability + crisp white card) -->
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/40 to-transparent flex items-center z-10">
+      <div class="max-w-7xl mx-auto px-6 w-full">
+        <div class="max-w-xl text-white space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white">
+            <span class="w-2 h-2 rounded-full bg-[#2589E8]"></span>
+            <span id="heroWelcomeBadge" class="text-xs font-bold uppercase tracking-wider">Welcome to Highlight Model School</span>
+          </div>
+
+          <h1 id="heroMainTitle" class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
+            Inspiring Excellence, Character & Future Leadership
+          </h1>
+
+          <p id="heroMainSubtitle" class="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
+            Providing modern science education, Islamic ethics, and holistic academic guidance for students in Saraghundi Thall and District Hangu.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <a href="#admissions" id="heroApplyBtn" class="inline-flex items-center justify-center bg-[#2589E8] hover:bg-[#1b73c7] text-white text-sm font-bold px-6 py-3 rounded-lg shadow-md transition-all">
+              Apply for Admission 2026-27
+            </a>
+            <a href="#uniform" class="inline-flex items-center justify-center bg-white/20 hover:bg-white hover:text-slate-900 text-white text-sm font-bold px-5 py-3 rounded-lg backdrop-blur-sm border border-white/30 shadow-md transition-all gap-2">
+              <i data-lucide="shirt" class="w-4 h-4 text-emerald-400"></i>
+              <span>3D School Uniform</span>
+            </a>
+            <a href="#announcements" id="heroNoticeBtn" class="inline-flex items-center justify-center bg-white/90 hover:bg-white text-slate-800 text-sm font-bold px-5 py-3 rounded-lg shadow-md transition-all">
+              View Latest Circulars
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small Slider Indicators at Bottom -->
+    <div id="sliderDotsContainer" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-slate-200">
+      <button class="indicator-dot h-2.5 w-7 rounded-full bg-[#2589E8] active transition-all" onclick="setSlide(0)" aria-label="Slide 1"></button>
+      <button class="indicator-dot h-2.5 w-2.5 rounded-full bg-slate-300 transition-all hover:bg-slate-400" onclick="setSlide(1)" aria-label="Slide 2"></button>
+      <button class="indicator-dot h-2.5 w-2.5 rounded-full bg-slate-300 transition-all hover:bg-slate-400" onclick="setSlide(2)" aria-label="Slide 3"></button>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       3. PRINCIPAL INTRODUCTION SECTION (Matching St. Jude Template)
+  ======================================================== -->
+  <section id="principal" class="py-20 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left: Principal Portrait -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md aspect-square rounded-2xl overflow-hidden border-2 border-slate-100 shadow-sm">
+            <img id="principalPortraitImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqJyR4CSWgPFTrRhhCtFLXMW-W9YRZAGAcEnv4ib7iz_VKNipT77kMNPtoWES7EiVD_j--NOT1yWbj_TxKlnxfmJoSMh3md-4tWi47C30dLgWEwkJkk7cwO4dnSr1RykHd7HjBbS1yT9TVdiCn2XhgbHHjg8ttWdGKcu2idc9OHi8f0bTG0ZOloOLmggbaDJvVqCIsdAkN-iJEvsXGFWBT62KgR2iXgj1wYgh3RW262BiDYYzSdRc8" alt="Principal Highlight Model School" class="w-full h-full object-cover">
+            <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm py-3 px-4 rounded-xl border border-slate-100 shadow-sm text-center">
+              <h4 id="principalTitleDisplay" class="font-bold text-[#2589E8] text-base">Principal & Head of Institution</h4>
+              <p id="principalCampusDisplay" class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Highlight Model School Thall</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Message and Introduction -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100">
+            <span class="w-2 h-2 rounded-full bg-[#2589E8]"></span>
+            <span id="principalBadgeDisplay" class="text-xs font-bold text-[#2589E8] uppercase tracking-wider">Leadership Greeting</span>
+          </div>
+
+          <h2 id="principalHeadingDisplay" class="text-3xl lg:text-4xl font-extrabold text-[#2589E8] tracking-tight">
+            Message from the Principal
+          </h2>
+
+          <p id="principalLeadDisplay" class="text-lg font-medium text-slate-700 leading-relaxed">
+            Welcome to Highlight Model School, Saraghundi Thall — an educational home dedicated to moral discipline, scholastic rigor, and intellectual discovery.
+          </p>
+
+          <p id="principalP1Display" class="text-base text-slate-600 leading-relaxed">
+            At Highlight Model School, our sacred mission is to guide young students from their foundational early years up through high school matriculation with an unwavering commitment to quality. We blend the official KPK curriculum with modern STEM learning, biometric discipline, and moral mentorship so that our children grow to be leaders of their community and nation.
+          </p>
+
+          <p id="principalP2Display" class="text-base text-slate-600 leading-relaxed">
+            Our doors are open to every parent striving for a brighter, honorable future for their son and daughter. We welcome you to visit our campus in Saraghundi Thall and join the Highlight family.
+          </p>
+
+          <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p class="font-bold text-slate-800">Office of the Principal</p>
+              <p id="principalPhonesDisplay" class="text-sm text-[#2589E8] font-mono">0301-8323146 • 0303-8262123</p>
+            </div>
+            <a href="#about" class="text-sm font-bold text-[#2589E8] hover:underline inline-flex items-center gap-1.5">
+              Read school values
+              <i data-lucide="arrow-right" class="w-4 h-4 text-[#2589E8]"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       4. ABOUT THE SCHOOL SECTION (Matching St. Jude Template)
+  ======================================================== -->
+  <section id="about" class="py-20 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 space-y-16">
+      
+      <!-- Section Intro Header -->
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100">
+          <span class="w-2 h-2 rounded-full bg-[#2589E8]"></span>
+          <span id="aboutBadgeDisplay" class="text-xs font-bold text-[#2589E8] uppercase tracking-wider">Foundation & Values</span>
+        </div>
+        <h2 id="aboutHeadingDisplay" class="text-3xl lg:text-4xl font-extrabold text-[#2589E8] tracking-tight">
+          About Our School
+        </h2>
+        <p id="aboutLeadDisplay" class="text-base text-slate-600 leading-relaxed">
+          Highlight Model School delivers a holistic learning journey rooted in moral integrity, Islamic values, and scientific curiosity. We nurture a disciplined educational atmosphere in Saraghundi Thall where students flourish into responsible citizens.
+        </p>
+      </div>
+
+      <!-- Core Cards: Introduction, Mission, Vision -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Introduction Card -->
+        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-[#2589E8] transition-all flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#2589E8]">
+              <i data-lucide="building-2" class="w-6 h-6 text-[#2589E8]"></i>
+            </div>
+            <h3 id="aboutIntroTitleDisplay" class="text-xl font-bold text-[#2589E8]">School Introduction</h3>
+            <p id="aboutIntroTextDisplay" class="text-sm text-slate-600 leading-relaxed">
+              Serving the children of Saraghundi Thall and District Hangu with modern classrooms, dedicated faculty, science laboratories, computer literacy, and automated student attendance tracking.
+            </p>
+          </div>
+          <div id="aboutIntroTagDisplay" class="pt-6 mt-6 border-t border-slate-100 text-xs font-semibold text-slate-500">
+            Registered Institution • District Hangu, KPK
+          </div>
+        </div>
+
+        <!-- Mission Card -->
+        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-[#2589E8] transition-all flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#2589E8]">
+              <i data-lucide="zap" class="w-6 h-6 text-[#2589E8]"></i>
+            </div>
+            <h3 id="aboutMissionTitleDisplay" class="text-xl font-bold text-[#2589E8]">Our Mission</h3>
+            <p id="aboutMissionTextDisplay" class="text-sm text-slate-600 leading-relaxed">
+              To empower every student with academic mastery, moral clarity, disciplined habits, and critical thinking skills essential for higher educational achievement and community uplift.
+            </p>
+          </div>
+          <div id="aboutMissionTagDisplay" class="pt-6 mt-6 border-t border-slate-100 text-xs font-semibold text-slate-500">
+            Action-Oriented • Student-Centered
+          </div>
+        </div>
+
+        <!-- Vision Card -->
+        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-[#2589E8] transition-all flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#2589E8]">
+              <i data-lucide="eye" class="w-6 h-6 text-[#2589E8]"></i>
+            </div>
+            <h3 id="aboutVisionTitleDisplay" class="text-xl font-bold text-[#2589E8]">Our Vision</h3>
+            <p id="aboutVisionTextDisplay" class="text-sm text-slate-600 leading-relaxed">
+              To be celebrated as the premier regional center of scholastic distinction, developing ethical thinkers and resilient leaders who honorably contribute to society under the banner of "نور • ہدایت • حکمت".
+            </p>
+          </div>
+          <div id="aboutVisionTagDisplay" class="pt-6 mt-6 border-t border-slate-100 text-xs font-semibold text-slate-500">
+            Moral Character • Modern Education
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       5. ACADEMIC PROGRAMS & EDUCATIONAL WINGS
+  ======================================================== -->
+  <section id="programs" class="py-20 bg-slate-50 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 space-y-12">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#2589E8]"></span>
+            <span class="text-xs font-bold text-[#2589E8] uppercase tracking-wider">Educational Pathways</span>
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-extrabold text-[#2589E8] tracking-tight">
+            Our Academic Programs
+          </h2>
+        </div>
+        <p class="text-sm text-slate-500 max-w-md">
+          A structured educational pathway designed for every developmental milestone, from early phonics to BISE matriculation.
+        </p>
+      </div>
+
+      <!-- 4 Programs Grid -->
+      <div id="programsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Track 1 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-[#2589E8] hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#2589E8]">
+              <i data-lucide="baby" class="w-5 h-5 text-[#2589E8]"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Pre-Primary Wing</h3>
+            <p class="text-xs font-semibold text-[#2589E8]">Montessori & Nursery</p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Interactive activity-based learning, phonics, motor skills, sensory development, and social confidence in a caring environment.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500 font-medium">Ages: 3 - 5 Years</span>
+            <button onclick="prefillAdmissionTrack('Pre-Primary (Playgroup / KG)')" class="font-bold text-[#2589E8] hover:underline">Apply Now</button>
+          </div>
+        </div>
+
+        <!-- Track 2 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-[#2589E8] hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#2589E8]">
+              <i data-lucide="book-open" class="w-5 h-5 text-[#2589E8]"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Primary Wing</h3>
+            <p class="text-xs font-semibold text-[#2589E8]">Class 1st to 5th</p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Comprehensive grounding in English, Mathematics, General Science, Urdu, and Islamic studies with regular monthly assessments.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500 font-medium">Class 1 to 5</span>
+            <button onclick="prefillAdmissionTrack('Primary Wing (Class 1-5)')" class="font-bold text-[#2589E8] hover:underline">Apply Now</button>
+          </div>
+        </div>
+
+        <!-- Track 3 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-[#2589E8] hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#2589E8]">
+              <i data-lucide="compass" class="w-5 h-5 text-[#2589E8]"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Middle Wing</h3>
+            <p class="text-xs font-semibold text-[#2589E8]">Class 6th to 8th</p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Bridge to higher sciences, analytical reasoning, hands-on computer labs, and speech competitions cultivating self-reliance.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500 font-medium">Class 6 to 8</span>
+            <button onclick="prefillAdmissionTrack('Middle Wing (Class 6-8)')" class="font-bold text-[#2589E8] hover:underline">Apply Now</button>
+          </div>
+        </div>
+
+        <!-- Track 4 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-[#2589E8] hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#2589E8]">
+              <i data-lucide="award" class="w-5 h-5 text-[#2589E8]"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Secondary Matric</h3>
+            <p class="text-xs font-semibold text-[#2589E8]">Class 9th & 10th (BISE Kohat)</p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Rigorous preparation in Physics, Chemistry, Biology / Computer Science, and Mathematics for top board exam distinctions.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500 font-medium">Matric Science</span>
+            <button onclick="prefillAdmissionTrack('Secondary Matric (Class 9-10)')" class="font-bold text-[#2589E8] hover:underline">Apply Now</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       5B. OFFICIAL SCHOOL UNIFORM (3D INTERACTIVE MANNEQUIN SHOWCASE)
+  ======================================================== -->
+  <section id="uniform" class="py-20 bg-slate-50 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 space-y-12">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#2589E8] animate-pulse"></span>
+            <span class="text-xs font-bold text-[#2589E8] uppercase tracking-wider">Scanned Official Dress Code</span>
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-extrabold text-[#2589E8] tracking-tight">
+            Official School Uniform
+          </h2>
+          <p class="text-sm text-slate-500 mt-2 max-w-xl">
+            Highlight Model School Saraghundi Thall ka official dress code. Niche diye gaye 3D model ko 360° ghumayein aur fabric, tie, aur color specifications inspect karein.
+          </p>
+        </div>
+
+        <!-- Gender Switcher Buttons on Header -->
+        <div class="flex items-center gap-2 bg-white p-1.5 rounded-2xl border border-slate-200 shadow-xs self-start md:self-auto">
+          <button 
+            type="button" 
+            id="uniformBoyBtn" 
+            onclick="toggleUniformGender('boy')" 
+            class="px-4 py-2 rounded-xl text-xs font-bold bg-[#2589E8] text-white shadow-sm transition-all flex items-center gap-1.5"
+          >
+            <i data-lucide="user" class="w-3.5 h-3.5"></i>
+            <span>Boys Uniform</span>
+          </button>
+          <button 
+            type="button" 
+            id="uniformGirlBtn" 
+            onclick="toggleUniformGender('girl')" 
+            class="px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition-all flex items-center gap-1.5"
+          >
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Girls Uniform</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Showcase Grid (3D Interactive Stage on Left, Spec Details on Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT: 3D WebGL Mannequin Stage (7 cols) -->
+        <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+          
+          <!-- Stage Top Toolbar -->
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div>
+              <h3 id="uniformTypeTitle" class="text-sm font-extrabold text-slate-900">Boys Official Uniform (Class Prep - Matric)</h3>
+              <p id="uniformTypeDesc" class="text-xs text-slate-500">Pistachio Sage Green Collared Shirt, Forest Green & Gold Striped Necktie, Formal Khaki Trousers.</p>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <button 
+                type="button" 
+                id="autoRotateBtn" 
+                onclick="toggleAutoRotate()" 
+                class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-blue-50 text-slate-700 text-xs font-bold flex items-center gap-1.5 transition-colors"
+                title="Pause or Resume 360 Auto Rotation"
+              >
+                <i data-lucide="pause" class="w-3.5 h-3.5 text-[#2589E8]"></i>
+                <span>Pause 360°</span>
+              </button>
+              <button 
+                type="button" 
+                onclick="resetUniformView()" 
+                class="p-2 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors"
+                title="Reset Camera Angle"
+              >
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3D Canvas Box -->
+          <div class="relative w-full h-[480px] rounded-2xl overflow-hidden border border-slate-100 bg-gradient-to-b from-slate-50 via-white to-slate-100 shadow-inner">
+            <div id="uniform3dCanvasContainer" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+            
+            <!-- Floating Instructions Pill -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-slate-900/80 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-[11px] font-semibold flex items-center gap-2 pointer-events-none shadow-md">
+              <i data-lucide="move" class="w-3.5 h-3.5 text-[#2589E8]"></i>
+              <span>Click & Drag to rotate 360° • Scroll to zoom</span>
+            </div>
+
+            <!-- Authentic Badge Tag -->
+            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-[#2589E8] shadow-xs flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>Interactive 3D Mannequin</span>
+            </div>
+          </div>
+
+          <!-- Bottom Features Row -->
+          <div class="grid grid-cols-3 gap-3 pt-2 text-center text-xs">
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="font-extrabold text-[#2589E8] block text-sm">Cotton Blend</span>
+              <span class="text-[11px] text-slate-500">Summer & KPK Climate</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="font-extrabold text-emerald-600 block text-sm">Color Coded</span>
+              <span class="text-[11px] text-slate-500">Official BISE Standards</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="font-extrabold text-slate-800 block text-sm">Crest Badge</span>
+              <span class="text-[11px] text-slate-500">Embroidered on Pocket</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Studio Reference, Exact Colors & Tailor Specs (5 cols) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Studio Photo Preview Card -->
+          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-extrabold text-slate-900 uppercase">Studio Pattern Display</h3>
+              <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2.5 py-0.5 rounded-full border border-emerald-200">
+                Official HMS Cut
+              </span>
+            </div>
+
+            <!-- Mannequin Studio Image -->
+            <div class="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-slate-200 relative group bg-slate-100">
+              <img src="images/school_uniform.jpg" alt="Highlight Model School Official Uniform Display" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-sm p-2.5 rounded-xl border border-slate-100 shadow-sm text-center text-[11px]">
+                <span class="font-bold text-[#2589E8]">Boys & Girls Official Dress Pattern</span>
+                <p class="text-slate-500 text-[10px]">Highlight Model School, Saraghundi Thall</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exact Color Palette & Fabric Guide -->
+          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+            <h3 class="text-sm font-extrabold text-slate-900 uppercase">Tailor Fabric & Color Codes</h3>
+            
+            <div class="space-y-3">
+              <!-- Color 1: Pistachio Green -->
+              <div class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 bg-slate-50">
+                <div class="w-10 h-10 rounded-xl shadow-xs border border-black/10 shrink-0" style="background-color: #93b791;"></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-800">Pistachio / Sage Green</span>
+                    <span class="font-mono text-[10px] text-slate-500 font-bold">#93B791</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500">Shirt fabric (Boys) & Pleated Frock Kurti (Girls)</p>
+                </div>
+              </div>
+
+              <!-- Color 2: Khaki Beige -->
+              <div class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 bg-slate-50">
+                <div class="w-10 h-10 rounded-xl shadow-xs border border-black/10 shrink-0" style="background-color: #c8a87d;"></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-800">Khaki / Beige Twill</span>
+                    <span class="font-mono text-[10px] text-slate-500 font-bold">#C8A87D</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500">Formal Trousers (Boys) & Matching Shalwar (Girls)</p>
+                </div>
+              </div>
+
+              <!-- Color 3: Forest Green & Gold Striped Tie -->
+              <div class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 bg-slate-50">
+                <div class="w-10 h-10 rounded-xl shadow-xs border border-black/10 shrink-0" style="background: repeating-linear-gradient(45deg, #1b4426, #1b4426 6px, #d4b886 6px, #d4b886 12px);"></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-800">Forest Green & Gold Tie</span>
+                    <span class="font-mono text-[10px] text-slate-500 font-bold">Striped</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500">Institutional diagonal necktie for all classes</p>
+                </div>
+              </div>
+
+              <!-- Color 4: Official Chest Pocket Crest Badge -->
+              <div class="flex items-center gap-3 p-2.5 rounded-xl border border-blue-100 bg-blue-50/50">
+                <div class="w-10 h-10 rounded-xl shadow-xs border border-blue-200 shrink-0 bg-white p-1 flex items-center justify-center overflow-hidden">
+                  <img src="images/school_crest.png" alt="HMS Crest" class="w-full h-full object-contain">
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-900">Official Pocket Crest</span>
+                    <span class="font-mono text-[10px] text-[#2589E8] font-bold">Embroidered</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500">Eagle, Blue Shield, Book, Globe & HMS Saraghundi Thall banner on left pocket</p>
+                </div>
+              </div>
+
+              <!-- Color 5: Shoes -->
+              <div class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 bg-slate-50">
+                <div class="w-10 h-10 rounded-xl shadow-xs border border-black/10 shrink-0 bg-slate-900"></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-800">Black Polished Shoes</span>
+                    <span class="font-mono text-[10px] text-slate-500 font-bold">Formal</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500">Black leather lace-up / strap shoes with dark socks</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Print / WhatsApp Tailor Specs Button -->
+            <div class="pt-2">
+              <button 
+                type="button" 
+                onclick="printTailorSlip()" 
+                class="w-full py-3 rounded-xl bg-[#2589E8] hover:bg-[#1b73c7] text-white font-bold text-xs shadow-sm flex items-center justify-center gap-2 transition-all"
+              >
+                <i data-lucide="printer" class="w-4 h-4"></i>
+                <span>Print Tailor Measurement Slip (A4)</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       6. TEACHERS / OUR TEAM SECTION (Matching St. Jude Template)
+  ======================================================== -->
+  <section id="teachers" class="py-20 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 space-y-12">
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#2589E8]"></span>
+            <span class="text-xs font-bold text-[#2589E8] uppercase tracking-wider">Academic Faculty</span>
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-extrabold text-[#2589E8] tracking-tight">
+            Meet Our Teachers
+          </h2>
+        </div>
+        <p class="text-sm text-slate-500 max-w-md">
+          Passionate educators bringing decades of subject expertise, research credentials, and individualized mentorship to every classroom.
+        </p>
+      </div>
+
+      <!-- Horizontal Grid of Teacher Profile Cards -->
+      <div id="teachersContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Teacher 1 -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:border-[#2589E8] hover:shadow-md transition-all group">
+          <div class="aspect-square w-full overflow-hidden bg-slate-100 relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3raSWiqCnxyPbF4t7uLDlXiiwpy3jIW6s4QJIwky9Y-hUBdcCHNxetP-mxqHC4c3e-sJw4lmScX7KlLQu8jzNLF8JpOyDXobrDmpFuxi_dPQzEsVHPvqlbUzYHlbp0v-_ayV-62iIX8nJXzW2fWQsMge_X_BRBOzTJV37IIw7SAAY8DnnSOXAbuTsJ-o9wWSrl1mEKl9Qz4AkyMkQmPvNSd9j3kcIMptJyb9k7NyDqfRUZ8Pwt-1j" alt="Mathematics Faculty Lead" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-3 right-3 bg-white/95 px-2.5 py-1 rounded-md border border-slate-100 text-[11px] font-bold text-[#2589E8]">
+              Mathematics
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <div>
+              <h3 class="text-xl font-bold text-slate-800">Senior Math Faculty</h3>
+              <p class="text-sm font-semibold text-[#2589E8]">Department Head</p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <span class="font-medium">Calculus, Algebra & Geometry</span>
+              <span class="font-semibold text-[#2589E8]">12 Yrs Exp</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher 2 -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:border-[#2589E8] hover:shadow-md transition-all group">
+          <div class="aspect-square w-full overflow-hidden bg-slate-100 relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC69KizG7u-0zQu7W1PpozCkw5PRBhxM6ccaZqgGLWl0eVL58tvObUWIEAyd2a9NU0IT88wyHIAdNvbaTSXHvcm-5wP7FtG_Pret-Nhp2dZbFwe-UNSJ-vIIbgp_5j_eChRa9XcWCU55n6k_RWZR5T9w85a8yPHTaMoCH6qhzjOPdK4NiS0pBvdOMMDtnBHdDOsraoadtlpb7QbF-UPRirKMSjdi-VcXlbWO0Hbdji1P2VwRAFvBMoe" alt="Lead STEM Instructor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-3 right-3 bg-white/95 px-2.5 py-1 rounded-md border border-slate-100 text-[11px] font-bold text-[#2589E8]">
+              Natural Sciences
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <div>
+              <h3 class="text-xl font-bold text-slate-800">Lead Science Faculty</h3>
+              <p class="text-sm font-semibold text-[#2589E8]">STEM & Physics Specialist</p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <span class="font-medium">Physics, Chemistry & Lab Experiments</span>
+              <span class="font-semibold text-[#2589E8]">9 Yrs Exp</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher 3 -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:border-[#2589E8] hover:shadow-md transition-all group">
+          <div class="aspect-square w-full overflow-hidden bg-slate-100 relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPqf77FSDZgTyM7DPeaAf1iKZ0GtYjs1l5ZZkvkXUZ_BYZWpHm9a2B7zxFK_oEsT9VrrsGeIMyLiLmb9dGKiQpogvS0tH0OXwdh6x7s204zuBpYrGS4sWqOLAT6KtPNv9WFV69fdzl9fWt-oFYPXl4PrNDeV_R12CfCAs53swVzydhS9zLVGqsAi7LI9qd8ksbAi8HsMAcwr80a5d-mFI8jc91dJnEy3oNfmCMIHymI2Q0VCcco6Ad" alt="Language & Humanities Chair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-3 right-3 bg-white/95 px-2.5 py-1 rounded-md border border-slate-100 text-[11px] font-bold text-[#2589E8]">
+              Humanities
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <div>
+              <h3 class="text-xl font-bold text-slate-800">Senior Humanities Faculty</h3>
+              <p class="text-sm font-semibold text-[#2589E8]">Language & Social Studies</p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <span class="font-medium">English, Urdu & Pakistan Studies</span>
+              <span class="font-semibold text-[#2589E8]">14 Yrs Exp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       7. NOTICES & ANNOUNCEMENTS (REAL-TIME CONNECTED WITH ADMIN)
+  ======================================================== -->
+  <section id="announcements" class="py-20 bg-slate-50 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 space-y-10">
+      
+      <!-- Section Header with Real-Time Indicator -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#2589E8] live-indicator"></span>
+            <span class="text-xs font-bold text-[#2589E8] uppercase tracking-wider">Official Circulars</span>
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-extrabold text-[#2589E8] tracking-tight">
+            Notices & Announcements
+          </h2>
+          <p class="text-sm text-slate-500 mt-2 max-w-xl">
+            Stay informed with the latest school circulars, exam dates, holiday notices, and admissions schedules. Direct live updates from the school admin portal.
+          </p>
+        </div>
+
+        <!-- Admin sync status pill -->
+        <div id="announcementLiveStatus" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs bg-white border border-slate-200 shadow-xs self-start md:self-auto">
+          <span class="w-2 h-2 rounded-full bg-[#2589E8] live-indicator"></span>
+          <span class="text-slate-700 font-semibold">Connecting to Admin Portal...</span>
+        </div>
+      </div>
+
+      <!-- Search & Category Filters -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+        <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0" id="categoryFilterContainer">
+          <button class="filter-pill active px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#2589E8] text-white transition-all" data-category="ALL">
+            All Circulars
+          </button>
+          <button class="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition-all" data-category="ADMISSION">
+            Admissions
+          </button>
+          <button class="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition-all" data-category="EXAM">
+            Exams & Results
+          </button>
+          <button class="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition-all" data-category="HOLIDAY">
+            Holidays
+          </button>
+          <button class="filter-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition-all" data-category="GENERAL">
+            General
+          </button>
+        </div>
+
+        <div class="relative w-full sm:w-64">
+          <input 
+            type="text" 
+            id="announcementSearch" 
+            placeholder="Search notices..." 
+            class="w-full pl-9 pr-3.5 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#2589E8] transition-colors"
+          >
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+        </div>
+      </div>
+
+      <!-- Dynamic Notices Container -->
+      <div id="announcementList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Skeleton Loaders (replaced dynamically by script.js) -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm animate-pulse space-y-4">
+          <div class="h-4 bg-slate-200 rounded w-1/3"></div>
+          <div class="h-6 bg-slate-200 rounded w-4/5"></div>
+          <div class="h-16 bg-slate-100 rounded"></div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm animate-pulse space-y-4">
+          <div class="h-4 bg-slate-200 rounded w-1/3"></div>
+          <div class="h-6 bg-slate-200 rounded w-4/5"></div>
+          <div class="h-16 bg-slate-100 rounded"></div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm animate-pulse space-y-4">
+          <div class="h-4 bg-slate-200 rounded w-1/3"></div>
+          <div class="h-6 bg-slate-200 rounded w-4/5"></div>
+          <div class="h-16 bg-slate-100 rounded"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       8. ADMISSIONS & OFFICIAL FORM GENERATOR (Compact English-Only)
+  ======================================================== -->
+  <section id="admissions" class="py-14 bg-slate-50 border-b border-slate-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200 mb-2">
+            <span class="w-2 h-2 rounded-full bg-[#8b1515]"></span>
+            <span class="text-[11px] font-bold text-[#8b1515] uppercase tracking-wider">Official Admission Form</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-[#8b1515] tracking-tight">
+            Admission Application Form
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
+            Fill the student particulars below to generate the official school admission form with tracking number.
+          </p>
+        </div>
+
+        <!-- Sample Load Button -->
+        <button 
+          type="button" 
+          onclick="loadSampleFormData()" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white border border-[#8b1515] text-[#8b1515] hover:bg-red-50 font-bold text-xs shadow-xs transition-all shrink-0 self-start sm:self-auto"
+        >
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#8b1515]"></i>
+          <span>Sample: Shah Abdul Latif</span>
+        </button>
+      </div>
+
+      <!-- Compact English-Only Form Container -->
+      <div class="bg-white p-5 sm:p-7 rounded-xl border border-[#8b1515]/30 shadow-xs">
+        <form id="admissionForm" class="space-y-3.5" onsubmit="handleAdmissionSubmit(event)">
+          
+          <!-- Row 1: Nation, Father Occupation, Class -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            <div>
+              <label for="admNation" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Nation / Tribe *</label>
+              <input 
+                type="text" 
+                id="admNation" 
+                required 
+                placeholder="e.g. Bangash" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] transition-colors"
+              >
+            </div>
+
+            <div>
+              <label for="admOccupation" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Father Occupation *</label>
+              <input 
+                type="text" 
+                id="admOccupation" 
+                required 
+                placeholder="e.g. Driver in UAE" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] transition-colors"
+              >
+            </div>
+
+            <div>
+              <label for="admClass" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Class in Which Admitted *</label>
+              <input 
+                type="text" 
+                id="admClass" 
+                required 
+                placeholder="e.g. Nursery, 1st, 9th" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] font-semibold transition-colors"
+              >
+            </div>
+          </div>
+
+          <!-- Row 2: Student Name & Father Name (English Only) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div>
+              <label for="admStuName" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Name (in Block Letters) *</label>
+              <input 
+                type="text" 
+                id="admStuName" 
+                required 
+                placeholder="e.g. SHAH ABDUL LATIF" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] uppercase font-semibold transition-colors"
+              >
+            </div>
+
+            <div>
+              <label for="admFatherName" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Father Name *</label>
+              <input 
+                type="text" 
+                id="admFatherName" 
+                required 
+                placeholder="e.g. RIZWAN SHAH" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] uppercase font-semibold transition-colors"
+              >
+            </div>
+          </div>
+
+          <!-- Row 3: Religion, Nationality, Contact No -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            <div>
+              <label for="admReligion" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Religion *</label>
+              <input 
+                type="text" 
+                id="admReligion" 
+                required 
+                value="Islam" 
+                placeholder="e.g. Islam" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] transition-colors"
+              >
+            </div>
+
+            <div>
+              <label for="admNationality" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Nationality *</label>
+              <input 
+                type="text" 
+                id="admNationality" 
+                required 
+                value="Pakistan" 
+                placeholder="e.g. Pakistan" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] transition-colors"
+              >
+            </div>
+
+            <div>
+              <label for="admContact" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Contact No *</label>
+              <input 
+                type="text" 
+                id="admContact" 
+                required 
+                placeholder="e.g. 0332-9666779 / 0301-8323146" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] font-mono transition-colors"
+              >
+            </div>
+          </div>
+
+          <!-- Row 4: Date of Birth & In Words -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div>
+              <label for="admDOB" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Date of Birth *</label>
+              <input 
+                type="date" 
+                id="admDOB" 
+                required 
+                onchange="handleDobChange(this.value)"
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] font-mono transition-colors"
+              >
+            </div>
+
+            <div>
+              <label for="admInWords" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">In Words *</label>
+              <input 
+                type="text" 
+                id="admInWords" 
+                required 
+                placeholder="e.g. Eight January Two Thousand Thirteen" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] transition-colors"
+              >
+            </div>
+          </div>
+
+          <!-- Row 5: School Last Attended & Home Address -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            <div class="sm:col-span-1">
+              <label for="admLastSchool" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">School Last Attended</label>
+              <input 
+                type="text" 
+                id="admLastSchool" 
+                value="-" 
+                placeholder="e.g. -" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] transition-colors"
+              >
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="admAddress" class="block text-[11px] font-bold text-[#8b1515] uppercase mb-1">Home Address *</label>
+              <input 
+                type="text" 
+                id="admAddress" 
+                required 
+                placeholder="e.g. Moh. Bijli Gar thall, District Hangu" 
+                class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#8b1515] transition-colors"
+              >
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button 
+              type="submit" 
+              class="w-full py-2.5 rounded-lg bg-[#8b1515] hover:bg-[#6b0f0f] text-white font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-2"
+            >
+              <i data-lucide="file-text" class="w-4 h-4 text-white"></i>
+              <span>Generate Official Admission Form</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       9. CONTACT US SECTION
+  ======================================================== -->
+  <section id="contact" class="py-20 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 space-y-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100">
+          <span class="w-2 h-2 rounded-full bg-[#2589E8]"></span>
+          <span class="text-xs font-bold text-[#2589E8] uppercase tracking-wider">Campus Connect</span>
+        </div>
+        <h2 class="text-3xl lg:text-4xl font-extrabold text-[#2589E8] tracking-tight">
+          Get in Touch With Us
+        </h2>
+        <p class="text-sm text-slate-500">
+          Have inquiries regarding admissions, student progress, or school events? Our campus administration is at your service.
+        </p>
+      </div>
+
+      <!-- Contact Info Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Address Card -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 mx-auto flex items-center justify-center text-[#2589E8]">
+            <i data-lucide="map-pin" class="w-6 h-6 text-[#2589E8]"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 text-base">Campus Location</h4>
+          <p id="contactAddressDisplay" class="text-xs text-slate-500 leading-relaxed">
+            Highlight Model School, Saraghundi Thall, District Hangu, Khyber Pakhtunkhwa, Pakistan.
+          </p>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 mx-auto flex items-center justify-center text-[#2589E8]">
+            <i data-lucide="phone-call" class="w-6 h-6 text-[#2589E8]"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 text-base">Helpline & WhatsApp</h4>
+          <p id="contactPhonesDisplay" class="text-xs text-slate-500 leading-relaxed font-mono">
+            0301-8323146<br>0303-8262123
+          </p>
+        </div>
+
+        <!-- Timings Card -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 mx-auto flex items-center justify-center text-[#2589E8]">
+            <i data-lucide="clock" class="w-6 h-6 text-[#2589E8]"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 text-base">Office Hours</h4>
+          <p id="contactHoursDisplay" class="text-xs text-slate-500 leading-relaxed">
+            Monday - Saturday<br>8:00 AM - 2:00 PM PST
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       10. FOOTER (Matching St. Jude Template Structure)
+  ======================================================== -->
+  <footer class="bg-white pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-14 border-b border-slate-100">
+        
+        <!-- Logo & Summary (Left) -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="images/logo.png" alt="Highlight Model School Logo" class="h-10 w-auto object-contain">
+            <span class="font-extrabold text-[#2589E8] text-base">HIGHLIGHT MODEL SCHOOL</span>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed pr-6">
+            Providing exceptional education, ethical integrity, and community leadership in Saraghundi Thall, District Hangu. Nurturing students from Early Years through Secondary Matric.
+          </p>
+          <div class="pt-2">
+            <span class="inline-block bg-blue-50 text-[#2589E8] text-xs font-bold px-3 py-1 rounded-md border border-blue-100">
+              KPK Education Department Registered
+            </span>
+          </div>
+        </div>
+
+        <!-- Essential Navigation Links -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-base font-bold text-[#2589E8]">Navigation</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#home" class="text-slate-600 hover:text-[#2589E8] transition-colors">Home</a></li>
+            <li><a href="#about" class="text-slate-600 hover:text-[#2589E8] transition-colors">About Us</a></li>
+            <li><a href="#principal" class="text-slate-600 hover:text-[#2589E8] transition-colors">Principal Message</a></li>
+            <li><a href="#programs" class="text-slate-600 hover:text-[#2589E8] transition-colors">Academic Programs</a></li>
+            <li><a href="#teachers" class="text-slate-600 hover:text-[#2589E8] transition-colors">Teachers & Faculty</a></li>
+            <li><a href="#announcements" class="text-slate-600 hover:text-[#2589E8] transition-colors">Notices & News</a></li>
+            <li><a href="#admissions" class="text-slate-600 hover:text-[#2589E8] transition-colors font-semibold">Admissions Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Information & Address -->
+        <div class="lg:col-span-5 space-y-4">
+          <h4 class="text-base font-bold text-[#2589E8]">Contact Information</h4>
+          <div class="space-y-3 text-sm text-slate-600">
+            <div class="flex items-start gap-3">
+              <i data-lucide="map-pin" class="w-5 h-5 text-[#2589E8] shrink-0 mt-0.5"></i>
+              <span>Saraghundi Thall, District Hangu, Khyber Pakhtunkhwa, Pakistan</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="phone" class="w-5 h-5 text-[#2589E8] shrink-0"></i>
+              <span>+92 301 8323146 / +92 303 8262123</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="mail" class="w-5 h-5 text-[#2589E8] shrink-0"></i>
+              <a href="mailto:info@highlightmodelschool.edu.pk" class="hover:text-[#2589E8] transition-colors">info@highlightmodelschool.edu.pk</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="clock" class="w-5 h-5 text-[#2589E8] shrink-0"></i>
+              <span>Office Hours: Monday - Saturday, 8:00 AM - 2:00 PM PST</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom copyright row -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© 2026 Highlight Model School. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-[#2589E8] transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-[#2589E8] transition-colors">Terms of Use</a>
+          <a href="admin.html" target="_blank" class="hover:text-[#2589E8] transition-colors font-bold text-[#2589E8] flex items-center gap-1">
+            <i data-lucide="lock" class="w-3 h-3"></i>
+            <span>Management Portal (CMS)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       MODAL 1: NOTICE / CIRCULAR DETAILS MODAL
+  ======================================================== -->
+  <div id="announcementModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeAnnouncementModal()" class="absolute top-5 right-5 p-2 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-2 mb-3">
+        <span id="modalCategory" class="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-[#2589E8] border border-blue-100">
+          NOTICE
+        </span>
+        <span id="modalDate" class="text-xs text-slate-500"></span>
+      </div>
+
+      <h3 id="modalTitle" class="text-2xl font-extrabold text-slate-800 leading-snug mb-4"></h3>
+
+      <div id="modalContent" class="text-sm text-slate-600 leading-relaxed whitespace-pre-line py-3 border-y border-slate-100 mb-4"></div>
+
+      <div id="modalAttachment" class="hidden mb-4 p-3 bg-blue-50/50 rounded-lg border border-blue-100">
+        <a id="modalAttachmentLink" href="#" target="_blank" class="text-xs font-bold text-[#2589E8] flex items-center gap-2 hover:underline">
+          <i data-lucide="paperclip" class="w-4 h-4"></i>
+          <span>View Notice Attachment</span>
+        </a>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <span class="text-xs text-slate-400 font-medium">Highlight Model School Official Desk</span>
+        <a 
+          id="modalShareWhatsApp" 
+          href="#" 
+          target="_blank" 
+          class="px-4 py-2 rounded-lg bg-[#2589E8] hover:bg-[#1b73c7] text-white font-bold text-xs flex items-center gap-1.5 transition-colors"
+        >
+          <i data-lucide="share-2" class="w-3.5 h-3.5 text-white"></i>
+          <span>Share WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: OFFICIAL PHYSICAL ADMISSION FORM REPLICA (EXACT SAME AS PHOTO)
+  ======================================================== -->
+  <div id="admissionSlipModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="relative w-full max-w-2xl my-auto no-print-wrapper">
+      
+      <!-- Floating Toolbar (No Print) -->
+      <div class="flex items-center justify-between gap-3 mb-3 no-print bg-slate-900/90 backdrop-blur-md p-3 rounded-xl text-white">
+        <div class="flex items-center gap-2 text-xs">
+          <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+          <span class="font-bold">Official Admission Form Generated</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button 
+            type="button" 
+            onclick="printAdmissionSlip()" 
+            class="px-4 py-1.5 rounded-lg bg-[#8b1515] hover:bg-[#a81c1c] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
+          >
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Print Form (A4)</span>
+          </button>
+          <a 
+            id="slipWhatsAppSubmitBtn" 
+            href="#" 
+            target="_blank" 
+            class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors"
+          >
+            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+            <span>WhatsApp</span>
+          </a>
+          <button 
+            type="button" 
+            onclick="closeAdmissionSlipModal()" 
+            class="p-1.5 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+            title="Close Form"
+          >
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- EXACT SAME PHYSICAL FORM REPLICA (PRINTABLE SHEET) -->
+      <div class="admission-paper-sheet admission-paper-watermark bg-[#fffdfa] p-6 sm:p-8 shadow-2xl relative text-slate-900 border-2 sm:border-4 border-[#8b1515]">
+        
+        <!-- Corner Ornaments -->
+        <div class="absolute top-1 left-1 text-[#8b1515] text-[10px] select-none">❖</div>
+        <div class="absolute top-1 right-1 text-[#8b1515] text-[10px] select-none">❖</div>
+        <div class="absolute bottom-1 left-1 text-[#8b1515] text-[10px] select-none">❖</div>
+        <div class="absolute bottom-1 right-1 text-[#8b1515] text-[10px] select-none">❖</div>
+
+        <!-- Top Row: Nation & Father Occupation (Left) vs Reg. No (Right) -->
+        <div class="flex items-start justify-between gap-4 mb-2 relative z-10 text-xs sm:text-sm">
+          <!-- Left side -->
+          <div class="space-y-1">
+            <div class="flex items-baseline">
+              <span class="form-label-red text-xs sm:text-sm">Nation:</span>
+              <span id="formPaperNation" class="pen-ink-text ml-2 text-sm sm:text-base">Bangash</span>
+            </div>
+            <div class="flex items-baseline">
+              <span class="form-label-red text-xs sm:text-sm">Father occupation:</span>
+              <span id="formPaperOccupation" class="pen-ink-text ml-2 text-sm sm:text-base">Driver in UAE</span>
+            </div>
+          </div>
+
+          <!-- Right side -->
+          <div class="flex items-baseline shrink-0">
+            <span class="form-label-red text-xs sm:text-sm">Reg. No.</span>
+            <span id="formPaperRegNo" class="border-b-2 border-[#8b1515] font-mono font-bold text-[#8b1515] px-3 pb-0.5 ml-1 text-xs sm:text-sm">HMS-2026-0482</span>
+          </div>
+        </div>
+
+        <!-- Center Header: Arched School Title, Emblem, Location Box & Admission Form -->
+        <div class="relative text-center my-1 z-10">
+          
+          <!-- Arched Title: HIGH LIGHT MODEL SCHOOL -->
+          <div class="w-full max-w-md mx-auto">
+            <svg viewBox="0 0 520 85" class="w-full h-auto overflow-visible">
+              <path id="archCurve" d="M 15,75 Q 260,8 505,75" fill="transparent" />
+              <text class="font-black uppercase tracking-wider" fill="#8b1515" stroke="#680d0d" stroke-width="0.8" font-size="28" font-family="'Plus Jakarta Sans', Georgia, serif">
+                <textPath href="#archCurve" startOffset="50%" text-anchor="middle">
+                  HIGH LIGHT MODEL SCHOOL
+                </textPath>
+              </text>
+            </svg>
+          </div>
+
+          <!-- School Crest in Center -->
+          <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto -mt-3 sm:-mt-4 relative">
+            <img src="images/logo.png" alt="Highlight Model School Emblem" class="w-full h-full object-contain filter drop-shadow-xs">
+          </div>
+
+          <!-- Crimson Location Badge -->
+          <div class="inline-block mt-1 px-4 py-0.5 bg-[#8b1515] text-white text-[11px] sm:text-xs font-bold rounded-sm border border-[#6b0f0f] shadow-xs tracking-wider font-serif">
+            Saraghundi Thall District Hangu
+          </div>
+
+          <!-- Red Capital Title: ADMISSION FORM -->
+          <div class="mt-2 text-base sm:text-xl font-black text-[#8b1515] tracking-widest uppercase font-serif">
+            ADMISSION FORM
+          </div>
+        </div>
+
+        <!-- Fields Rows (Exact Same 10 Rows with Crimson Underlines - English Only) -->
+        <div class="space-y-2 sm:space-y-2.5 mt-4 relative z-10 text-xs sm:text-sm">
+          
+          <!-- Row 1: Name (in Block Letters) -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">Name (in Block Letters)</span>
+            <div class="form-field-line">
+              <span id="formPaperName" class="pen-ink-text text-sm sm:text-base">SHAH ABDUL LATIF</span>
+            </div>
+          </div>
+
+          <!-- Row 2: Father name -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">Father name</span>
+            <div class="form-field-line">
+              <span id="formPaperFather" class="pen-ink-text text-sm sm:text-base">RIZWAN SHAH</span>
+            </div>
+          </div>
+
+          <!-- Row 3: Religion -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">Religion</span>
+            <div class="form-field-line">
+              <span id="formPaperReligion" class="pen-ink-text text-sm sm:text-base">Islam</span>
+            </div>
+          </div>
+
+          <!-- Row 4: Nationality -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">Nationality</span>
+            <div class="form-field-line">
+              <span id="formPaperNationality" class="pen-ink-text text-sm sm:text-base">Pakistan</span>
+            </div>
+          </div>
+
+          <!-- Row 5: Date of Birth -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">Date of Birth</span>
+            <div class="form-field-line">
+              <span id="formPaperDOB" class="pen-ink-text text-sm sm:text-base">08 - 01 - 2023</span>
+            </div>
+          </div>
+
+          <!-- Row 6: In Words -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">In Words</span>
+            <div class="form-field-line">
+              <span id="formPaperInWords" class="pen-ink-text text-xs sm:text-base">Eight January two thousand thirteen</span>
+            </div>
+          </div>
+
+          <!-- Row 7: School Last Attended -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">School Last Attended</span>
+            <div class="form-field-line">
+              <span id="formPaperLastSchool" class="pen-ink-text text-sm sm:text-base">-</span>
+            </div>
+          </div>
+
+          <!-- Row 8: Class in Which Admitted -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">Class in Which Admitted</span>
+            <div class="form-field-line">
+              <span id="formPaperClass" class="pen-ink-text font-bold text-sm sm:text-lg text-blue-900">Nursery</span>
+            </div>
+          </div>
+
+          <!-- Row 9: Home Address -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">Home Address</span>
+            <div class="form-field-line">
+              <span id="formPaperAddress" class="pen-ink-text text-xs sm:text-base">Moh. Bijli Gar thall</span>
+            </div>
+          </div>
+
+          <!-- Row 10: Contact No -->
+          <div class="flex items-end gap-2">
+            <span class="form-label-red">Contact No</span>
+            <div class="form-field-line">
+              <span id="formPaperContact" class="pen-ink-text font-mono text-xs sm:text-base">0332-9666779 / 0333 9629280</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Signatures: Principal (Left) vs Parent's/Guardian (Right) -->
+        <div class="flex items-end justify-between pt-10 sm:pt-14 mt-4 relative z-10 text-xs sm:text-sm">
+          
+          <!-- Principal Signature & Stamp -->
+          <div class="text-center relative">
+            <!-- Simulated Official Stamp / Signature -->
+            <div class="absolute -top-9 left-1/2 -translate-x-1/2 w-20 pointer-events-none select-none opacity-90">
+              <svg viewBox="0 0 100 45" class="w-full h-auto text-blue-800">
+                <path d="M 10,35 Q 25,5 35,30 T 55,20 T 75,35 T 90,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M 20,40 Q 50,25 85,38" fill="none" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+            </div>
+            <div class="w-32 sm:w-40 border-b-2 border-[#8b1515] pb-1"></div>
+            <span class="form-label-red block mt-1.5 text-xs sm:text-sm font-black">Principal</span>
+          </div>
+
+          <!-- Parent / Guardian Signature -->
+          <div class="text-center">
+            <div class="w-32 sm:w-40 border-b-2 border-[#8b1515] pb-1"></div>
+            <span class="form-label-red block mt-1.5 text-xs sm:text-sm font-black">Parent's / Guardian</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FLOATING ACTIONS (WhatsApp & Back to Top)
+  ======================================================== -->
+  <a 
+    href="https://wa.me/923018323146?text=Assalam%20o%20Alaikum,%20Highlight%20Model%20School%20Information" 
+    target="_blank" 
+    class="fixed bottom-6 right-6 z-40 w-13 h-13 p-3 rounded-full bg-[#2589E8] hover:bg-[#1b73c7] text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform border-2 border-white"
+    title="WhatsApp Helpline"
+  >
+    <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+  </a>
+
+  <button 
+    id="backToTopBtn"
+    aria-label="Scroll back to top"
+    class="fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full bg-[#2589E8] hover:bg-[#1b73c7] text-white shadow-xl flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 border border-white/20"
+  >
+    <i data-lucide="chevron-up" class="w-5 h-5 text-white"></i>
+  </button>
+
+  <!-- ========================================================
+       MODAL 3: 3D UNIFORM FULLSCREEN POPUP
+  ======================================================== -->
+  <div id="uniformModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-4xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 max-h-[92vh] overflow-y-auto">
+      <button onclick="closeUniformModal()" class="absolute top-5 right-5 p-2 rounded-xl text-slate-500 hover:bg-slate-100 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-2 mb-2">
+        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-50 text-[#2589E8] border border-blue-100 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Official Dress Code Spec</span>
+        </span>
+      </div>
+
+      <h3 class="text-2xl font-extrabold text-slate-900 mb-1">Highlight Model School Official Uniform</h3>
+      <p class="text-xs text-slate-500 mb-6">Saraghundi Thall, District Hangu • KPK Board Certified Uniform Standards</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <!-- Mannequin Studio Cut -->
+        <div class="aspect-[3/4] rounded-2xl overflow-hidden border border-slate-200 shadow-inner bg-slate-50 relative">
+          <img src="images/school_uniform.jpg" alt="Highlight Model School Uniform" class="w-full h-full object-cover">
+          <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-sm p-2 rounded-xl text-center text-xs font-bold text-[#2589E8] border border-slate-100">
+            Boys (Shirt + Tie + Pants) | Girls (Pleated Frock + Shalwar)
+          </div>
+        </div>
+
+        <!-- Specifications Breakdown -->
+        <div class="space-y-4 text-xs text-slate-600">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <h4 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="shirt" class="w-4 h-4 text-[#2589E8]"></i>
+              <span>Boys Dress Code:</span>
+            </h4>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600">
+              <li><strong>Shirt:</strong> Light Pistachio / Sage Green cotton with collared neck & embroidered HMS pocket crest.</li>
+              <li><strong>Tie:</strong> Dark Forest Green with diagonal gold-beige striped tie.</li>
+              <li><strong>Trousers:</strong> Formal Khaki / Beige formal school pants.</li>
+              <li><strong>Footwear:</strong> Black school shoes with dark socks.</li>
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <h4 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-[#2589E8]"></i>
+              <span>Girls Dress Code:</span>
+            </h4>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600">
+              <li><strong>Frock / Kurti:</strong> Matching Pistachio Green pleated frock with chest pocket & HMS emblem.</li>
+              <li><strong>Bottom:</strong> Khaki / Beige matching shalwar / trousers.</li>
+              <li><strong>Footwear:</strong> Black school shoes / Mary Janes.</li>
+            </ul>
+          </div>
+
+          <!-- Official Pocket Badge Callout -->
+          <div class="p-3.5 rounded-2xl bg-blue-50/80 border border-blue-200 flex items-center gap-3.5">
+            <div class="w-12 h-14 bg-white rounded-xl border border-blue-200 p-1 shrink-0 flex items-center justify-center shadow-xs">
+              <img src="images/school_crest.png" alt="Official Crest" class="w-full h-full object-contain">
+            </div>
+            <div>
+              <span class="font-bold text-slate-900 text-xs block">Official Embroidered Pocket Badge</span>
+              <p class="text-[11px] text-slate-600">Eagle, blue shield, open book ("نور ہدایت حکمت"), globe & ribbon banner "HIGH LIGHT MODEL SCHOOL SARAGHUNDI THALL" embroidered on left chest pocket.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-2">
+            <button 
+              type="button" 
+              onclick="printTailorSlip()" 
+              class="flex-1 py-3 rounded-xl bg-[#2589E8] hover:bg-[#1b73c7] text-white font-bold text-xs shadow-sm flex items-center justify-center gap-2"
+            >
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>Print Tailor Measurement Slip</span>
+            </button>
+            <a 
+              href="https://wa.me/923018323146?text=Assalam%20o%20Alaikum,%20Highlight%20Model%20School%20Uniform%20Details" 
+              target="_blank" 
+              class="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5"
+            >
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tailor Slip Print Script -->
+  <script>
+    function printTailorSlip() {
+      const w = window.open('', '_blank');
+      w.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>HMS Official Uniform Tailor Specification Slip</title>
+          <style>
+            body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; padding: 30px; color: #1e293b; max-width: 720px; margin: auto; }
+            .box { border: 3px double #2589E8; padding: 25px; border-radius: 12px; background: #fffdfa; }
+            .hdr { text-align: center; border-bottom: 2px solid #2589E8; padding-bottom: 12px; margin-bottom: 16px; }
+            .logo { width: 60px; height: auto; margin-bottom: 6px; }
+            h2 { color: #2589E8; margin: 0; font-size: 22px; font-weight: 900; }
+            p { margin: 4px 0; font-size: 12px; color: #64748b; }
+            .badge { display: inline-block; background: #eff6ff; color: #2589E8; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-top: 4px; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+            .col { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 14px; }
+            .col-title { font-weight: bold; color: #0f172a; font-size: 14px; margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 4px; }
+            ul { margin: 0; padding-left: 18px; font-size: 12px; line-height: 1.6; }
+            .swatch { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: 11px; }
+            .swatch-box { width: 22px; height: 22px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); }
+            .footer { margin-top: 25px; border-top: 1px dashed #cbd5e1; padding-top: 12px; display: flex; justify-content: space-between; font-size: 11px; font-weight: bold; color: #64748b; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="no-print" style="margin-bottom: 14px; text-align: right;">
+            <button onclick="window.print()" style="background: #2589E8; color: white; border: none; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-weight: bold;">Print Specification Slip (A4)</button>
+          </div>
+          <div class="box">
+            <div class="hdr">
+              <img src="images/logo.png" class="logo" alt="HMS">
+              <h2>HIGHLIGHT MODEL SCHOOL</h2>
+              <p>Saraghundi Thall, District Hangu, Khyber Pakhtunkhwa • Tel: 0301-8323146</p>
+              <div class="badge">OFFICIAL SCHOOL UNIFORM TAILOR SPECIFICATION SLIP</div>
+            </div>
+
+            <p style="font-size: 12px; line-height: 1.5; color: #334155;">
+              Tailor Hazrat ke liye hidayat: Niche diye gaye official color codes aur design pattern ke mutabiq student ka uniform silai kiya jaye:
+            </p>
+
+            <div class="grid">
+              <div class="col">
+                <div class="col-title">👦 BOYS UNIFORM (Prep - 10th)</div>
+                <ul>
+                  <li><strong>Shirt:</strong> Light Pistachio / Sage Green Cotton</li>
+                  <li><strong>Collar:</strong> Standard stiff shirt collar</li>
+                  <li><strong>Pocket:</strong> Left chest pocket with HMS Crest Badge</li>
+                  <li><strong>Tie:</strong> Dark Forest Green & Gold/Beige striped diagonal tie</li>
+                  <li><strong>Trousers:</strong> Formal Khaki / Beige durable twill</li>
+                  <li><strong>Shoes:</strong> Polished black lace/strap shoes</li>
+                </ul>
+                <div class="swatch">
+                  <div class="swatch-box" style="background:#93b791;"></div>
+                  <span>Shirt Color: Pistachio Green (#93B791)</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-box" style="background:#c8a87d;"></div>
+                  <span>Trousers Color: Khaki Beige (#C8A87D)</span>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="col-title">👧 GIRLS UNIFORM (Prep - 10th)</div>
+                <ul>
+                  <li><strong>Frock / Kurti:</strong> Matching Pistachio Sage Green</li>
+                  <li><strong>Style:</strong> Pleated chest & flare with center placket</li>
+                  <li><strong>Pocket:</strong> Left chest pocket with HMS Crest Badge</li>
+                  <li><strong>Bottom:</strong> Matching Khaki / Beige Shalwar or Trousers</li>
+                  <li><strong>Sleeves:</strong> Full sleeves with tailored cuffs</li>
+                  <li><strong>Shoes:</strong> Black Mary Janes / Strap shoes</li>
+                </ul>
+                <div class="swatch">
+                  <div class="swatch-box" style="background:#93b791;"></div>
+                  <span>Frock Color: Pistachio Green (#93B791)</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-box" style="background:#c8a87d;"></div>
+                  <span>Shalwar Color: Khaki Beige (#C8A87D)</span>
+                </div>
+              </div>
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; margin-bottom: 14px; display: flex; align-items: center; gap: 14px;">
+              <img src="images/school_crest.png" style="width: 48px; height: auto;" alt="Official Crest">
+              <div style="font-size: 11px; line-height: 1.4;">
+                <strong style="color: #0f172a; font-size: 12px;">Official Chest Pocket Badge (Embroidered Crest):</strong><br>
+                Official Highlight Model School Saraghundi Thall emblem (Eagle, Blue Shield, Book with "نور ہدایت حکمت", Globe & Ribbon) must be embroidered or stitched onto the left chest pocket.
+              </div>
+            </div>
+
+            <div style="background: #eff6ff; border-left: 4px solid #2589E8; padding: 10px 14px; font-size: 11px; border-radius: 4px; color: #1e40af;">
+              <strong>Winter Addition:</strong> Navy Blue V-neck knit pullover / sweater or blazer with school crest badge.
+            </div>
+
+            <div class="footer">
+              <span>Candidate Name: _______________________</span>
+              <span>Class: _________</span>
+              <span>Principal Highlight Model School</span>
+            </div>
+          </div>
+        </body>
+        </html>
+      `);
+      w.document.close();
+    }
+  </script>
+
+  <!-- Client Scripts -->
+  <script src="script.js"></script>
+  <script src="uniform-3d.js?v=6.0"></script>
+</body>
+</html>

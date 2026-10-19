@@ -1,0 +1,196 @@
+/* ==========================================================================
+   HIGHLIGHT MODEL SCHOOL - ST. JUDE INSPIRED THEME
+   Primary Color: #2589E8 | Base Background: #FFFFFF | Text: #334155
+   Saraghundi Thall, District Hangu, KPK
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --primary-blue: #2589E8;
+  --primary-hover: #1b73c7;
+  --primary-light: #eff6ff;
+  --primary-border: #dbeafe;
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --border-subtle: #f1f5f9;
+  --border-card: #e2e8f0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-main);
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Urdu Typography */
+.font-urdu {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  line-height: 2.2;
+}
+
+/* Monospace font */
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Slider transition classes */
+.slide-item {
+  transition: opacity 0.6s ease-in-out;
+}
+
+.indicator-dot {
+  transition: all 0.3s ease;
+}
+
+.indicator-dot.active {
+  background-color: #2589E8;
+  width: 28px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #93c5fd;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2589E8;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.65);
+}
+
+/* Shimmer Loading Skeleton */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s infinite;
+}
+
+/* Live Pulse Animation */
+@keyframes pulse-live {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 137, 232, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(37, 137, 232, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 137, 232, 0);
+  }
+}
+
+.live-indicator {
+  animation: pulse-live 2s infinite;
+}
+
+/* Print Styles */
+@media print {
+  .no-print, header, footer, nav, .floating-action-btn, #backToTopBtn, #announcementModal, #mobileMenu, #home, #about, #principal, #programs, #teachers, #announcements, #contact, .admission-form-controls {
+    display: none !important;
+  }
+  body, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #admissionSlipModal {
+    position: static !important;
+    display: block !important;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .admission-paper-sheet {
+    max-width: 100% !important;
+    width: 100% !important;
+    border: 3px solid #8b1515 !important;
+    box-shadow: inset 0 0 0 3px #ffffff, inset 0 0 0 5px #8b1515 !important;
+    padding: 1.8rem !important;
+    margin: 0 auto !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* Authentic Admission Form Paper Styling */
+.admission-paper-sheet {
+  background-color: #fffefb;
+  border: 3px solid #8b1515;
+  box-shadow: inset 0 0 0 3px #ffffff, inset 0 0 0 5px #8b1515;
+  position: relative;
+  border-radius: 4px;
+}
+
+.admission-paper-watermark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('images/logo.png');
+  background-repeat: no-repeat;
+  background-position: center 52%;
+  background-size: 290px auto;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pen-ink-text {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #0f172a;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.925rem;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.form-label-red {
+  color: #8b1515;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.form-field-line {
+  border-bottom: 1.5px solid #8b1515;
+  flex-grow: 1;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  min-height: 1.8rem;
+  display: flex;
+  align-items: flex-end;
+}
